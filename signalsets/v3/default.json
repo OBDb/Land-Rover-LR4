@@ -38,7 +38,8 @@
             "unit": "rpm",
             "min": 0
           },
-          "name": "Engine RPM"
+          "name": "Engine RPM",
+          "suggestedMetric": "engineRPM"
         }
       ]
     },
@@ -59,28 +60,8 @@
             "unit": "celsius",
             "min": 0
           },
-          "name": "Coolant Temperature"
-        }
-      ]
-    },
-    {
-      "hdr": "732",
-      "cmd": {
-        "22": "D928"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_PARKED",
-          "path": "Movement",
-          "fmt": {
-            "bix": 7,
-            "len": 1,
-            "max": 1,
-            "unit": "noyes",
-            "min": 0
-          },
-          "name": "Parked?"
+          "name": "Coolant Temperature",
+          "suggestedMetric": "engineCoolantTemp"
         }
       ]
     },
@@ -100,7 +81,8 @@
             "unit": "percent",
             "min": 0
           },
-          "name": "Engine Load"
+          "name": "Engine Load",
+          "suggestedMetric": "engineLoad"
         }
       ]
     },
@@ -121,7 +103,8 @@
             "max": 255,
             "min": 0
           },
-          "name": "Intake Air Temperature"
+          "name": "Intake Air Temperature",
+          "suggestedMetric": "intakeAirTemp"
         }
       ]
     },
@@ -139,192 +122,11 @@
             "len": 16,
             "div": 100,
             "unit": "gramsPerSecond",
-            "max": 255,
+            "max": 655,
             "min": 0
           },
-          "name": "Mass Air Flow"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "1F"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_TIME_SINCE_ENGINE_START",
-          "path": "Stats",
-          "fmt": {
-            "len": 16,
-            "unit": "seconds",
-            "max": 65535,
-            "min": 0
-          },
-          "name": "Time Since Engine Start"
-        }
-      ]
-    },
-    {
-      "hdr": "7E0",
-      "cmd": {
-        "22": "F300"
-      },
-      "freq": 5,
-      "signals": [
-        {
-          "id": "LANDROVER_ENGINE_OIL_TEMP",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "add": -40,
-            "unit": "celsius",
-            "max": 255,
-            "min": 0
-          },
-          "name": "Engine Oil Temp"
-        }
-      ]
-    },
-    {
-      "hdr": "7E0",
-      "cmd": {
-        "22": "F200"
-      },
-      "freq": 5,
-      "signals": [
-        {
-          "id": "LANDROVER_ENGINE_OIL_VOL",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "div": 10,
-            "unit": "liters",
-            "max": 255,
-            "min": 0
-          },
-          "name": "Engine Oil Volume"
-        }
-      ]
-    },
-    {
-      "hdr": "7E0",
-      "cmd": {
-        "22": "033E"
-      },
-      "freq": 5,
-      "signals": [
-        {
-          "id": "LANDROVER_BOOST",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "kilopascal",
-            "max": 255,
-            "min": 0
-          },
-          "name": "Boost"
-        }
-      ]
-    },
-    {
-      "hdr": "7E0",
-      "cmd": {
-        "22": "5200"
-      },
-      "freq": 5,
-      "signals": [
-        {
-          "id": "LANDROVER_IAT2",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "celsius",
-            "max": 255,
-            "min": 0
-          },
-          "name": "IAT2"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "03"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_FUEL_SYS_STATUS",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "scalar",
-            "max": 255,
-            "min": 0
-          },
-          "name": "Fuel System Status"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "06"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_SHORT_TERM_FUEL_TRIM_B1",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "percent",
-            "max": 100,
-            "min": -100
-          },
-          "name": "Short Term Fuel Trim Bank 1"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "07"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_LONG_TERM_FUEL_TRIM_B1",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "percent",
-            "max": 100,
-            "min": -100
-          },
-          "name": "Long Term Fuel Trim Bank 1"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "0A"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_FUEL_PRESSURE",
-          "path": "Engine",
-          "fmt": {
-            "len": 8,
-            "unit": "kilopascal",
-            "max": 765,
-            "min": 0
-          },
-          "name": "Fuel Pressure"
+          "name": "Mass Air Flow",
+          "suggestedMetric": "massAirflow"
         }
       ]
     },
@@ -344,7 +146,114 @@
             "max": 100,
             "min": 0
           },
-          "name": "Throttle Position"
+          "name": "Throttle Position",
+          "suggestedMetric": "throttlePosition"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "1F"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_TIME_SINCE_ENGINE_START",
+          "path": "Engine",
+          "fmt": {
+            "len": 16,
+            "unit": "seconds",
+            "max": 65535,
+            "min": 0
+          },
+          "name": "Time Since Engine Start",
+          "suggestedMetric": "runTime"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "03"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_FUEL_SYS_STATUS",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "unit": "scalar",
+            "max": 255,
+            "min": 0
+          },
+          "name": "Fuel System Status",
+          "suggestedMetric": "fuelSystemStatus"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "06"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_SHORT_TERM_FUEL_TRIM_B1",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "unit": "percent",
+            "max": 100,
+            "min": -100
+          },
+          "name": "Short Term Fuel Trim Bank 1",
+          "suggestedMetric": "shortTermFuelTrim"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "07"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_LONG_TERM_FUEL_TRIM_B1",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "unit": "percent",
+            "max": 100,
+            "min": -100
+          },
+          "name": "Long Term Fuel Trim Bank 1",
+          "suggestedMetric": "longTermFuelTrim"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "0A"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_FUEL_PRESSURE",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "mul": 3,
+            "unit": "kilopascal",
+            "max": 765,
+            "min": 0
+          },
+          "name": "Fuel Pressure",
+          "suggestedMetric": "fuelPressure"
         }
       ]
     },
@@ -360,31 +269,13 @@
           "path": "Engine",
           "fmt": {
             "len": 8,
+            "div": 200,
             "unit": "volts",
             "max": 1.275,
             "min": 0
           },
-          "name": "O2 Sensor 1 Voltage"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "1C"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_OBD_STANDARDS",
-          "path": "Details",
-          "fmt": {
-            "len": 8,
-            "unit": "scalar",
-            "max": 255,
-            "min": 0
-          },
-          "name": "OBD Standards"
+          "name": "O2 Sensor 1 Voltage",
+          "suggestedMetric": "o2SensorVoltage"
         }
       ]
     },
@@ -404,7 +295,8 @@
             "max": 65535,
             "min": 0
           },
-          "name": "Distance with MIL On"
+          "name": "Distance with MIL On",
+          "suggestedMetric": "distanceWithMILOn"
         }
       ]
     },
@@ -441,12 +333,35 @@
           "path": "Fuel",
           "fmt": {
             "len": 8,
+            "div": 2.55,
             "unit": "percent",
             "max": 100,
             "min": 0
           },
           "name": "Fuel Level Input",
           "suggestedMetric": "fuelTankLevel"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "31"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_DISTANCE_TRAVELED",
+          "path": "Stats",
+          "fmt": {
+            "len": 16,
+            "unit": "kilometers",
+            "max": 6553500,
+            "min": 0,
+            "mul": 100
+          },
+          "name": "Distance Traveled",
+          "suggestedMetric": "odometer"
         }
       ]
     },
@@ -466,27 +381,8 @@
             "max": 255,
             "min": 0
           },
-          "name": "Barometric Pressure"
-        }
-      ]
-    },
-    {
-      "hdr": "7E8",
-      "cmd": {
-        "01": "42"
-      },
-      "freq": 1,
-      "signals": [
-        {
-          "id": "LANDROVER_CONTROL_MODULE_VOLTAGE",
-          "path": "Electrical",
-          "fmt": {
-            "len": 16,
-            "unit": "volts",
-            "max": 655.35,
-            "min": 0
-          },
-          "name": "Control Module Voltage"
+          "name": "Barometric Pressure",
+          "suggestedMetric": "barometricPressure"
         }
       ]
     },
@@ -495,18 +391,21 @@
       "cmd": {
         "01": "46"
       },
-      "freq": 1,
+      "freq": 30,
       "signals": [
         {
           "id": "LANDROVER_AMBIENT_AIR_TEMP",
           "path": "Climate",
           "fmt": {
             "len": 8,
-            "unit": "celsius",
-            "max": 215,
-            "min": -40
+            "max": 87.5,
+            "min": -40,
+            "div": 2,
+            "add": -40,
+            "unit": "celsius"
           },
-          "name": "Ambient Air Temperature"
+          "name": "Ambient Air Temperature",
+          "suggestedMetric": "ambientAirTemp"
         }
       ]
     },
@@ -526,7 +425,8 @@
             "max": 100,
             "min": 0
           },
-          "name": "Commanded Throttle Actuator"
+          "name": "Commanded Throttle Actuator",
+          "suggestedMetric": "commandedThrottleActuator"
         }
       ]
     },
@@ -547,7 +447,160 @@
             "max": 215,
             "min": -40
           },
-          "name": "Engine Oil Temperature (Std)"
+          "name": "Engine Oil Temperature (Standard)",
+          "suggestedMetric": "engineOilTemp"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "A6"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_ODOMETER",
+          "path": "Stats",
+          "fmt": {
+            "len": 24,
+            "unit": "kilometers",
+            "max": 1677721500,
+            "min": 0,
+            "mul": 100
+          },
+          "name": "Odometer",
+          "suggestedMetric": "odometer"
+        }
+      ]
+    },
+    {
+      "hdr": "7E8",
+      "cmd": {
+        "01": "A7"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_ODOMETER_MILES",
+          "path": "Stats",
+          "fmt": {
+            "len": 24,
+            "unit": "miles",
+            "max": 1677721500,
+            "min": 0,
+            "mul": 100
+          },
+          "name": "Odometer (Miles)",
+          "suggestedMetric": "odometer"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "F300"
+      },
+      "freq": 5,
+      "signals": [
+        {
+          "id": "LANDROVER_ENGINE_OIL_TEMP",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "add": -40,
+            "unit": "celsius",
+            "max": 255,
+            "min": 0
+          },
+          "name": "Engine Oil Temperature",
+          "suggestedMetric": "engineOilTemp"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "F200"
+      },
+      "freq": 5,
+      "signals": [
+        {
+          "id": "LANDROVER_ENGINE_OIL_VOL",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "div": 10,
+            "unit": "liters",
+            "max": 255,
+            "min": 0
+          },
+          "name": "Engine Oil Volume",
+          "suggestedMetric": "engineOilLevel"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "033E"
+      },
+      "freq": 5,
+      "signals": [
+        {
+          "id": "LANDROVER_BOOST",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "unit": "kilopascal",
+            "max": 255,
+            "min": 0
+          },
+          "name": "Turbo Boost Pressure",
+          "suggestedMetric": "turboBoostPressure"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "5200"
+      },
+      "freq": 5,
+      "signals": [
+        {
+          "id": "LANDROVER_IAT2",
+          "path": "Engine",
+          "fmt": {
+            "len": 8,
+            "unit": "celsius",
+            "max": 255,
+            "min": 0
+          },
+          "name": "Intake Air Temperature 2",
+          "suggestedMetric": "intakeAirTemp2"
+        }
+      ]
+    },
+    {
+      "hdr": "732",
+      "cmd": {
+        "22": "D928"
+      },
+      "freq": 1,
+      "signals": [
+        {
+          "id": "LANDROVER_PARKED",
+          "path": "Movement",
+          "fmt": {
+            "bix": 7,
+            "len": 1,
+            "max": 1,
+            "unit": "noyes",
+            "min": 0
+          },
+          "name": "Vehicle Parked Status",
+          "suggestedMetric": "parkedStatus"
         }
       ]
     },
@@ -651,7 +704,8 @@
             "max": 255,
             "min": 0
           },
-          "name": "Spare Tire Pressure"
+          "name": "Spare Tire Pressure",
+          "suggestedMetric": "spareTirePressure"
         }
       ]
     },
@@ -672,7 +726,8 @@
             "max": 215,
             "min": -40
           },
-          "name": "Front Left Tire Temperature"
+          "name": "Front Left Tire Temperature",
+          "suggestedMetric": "frontLeftTireTemp"
         }
       ]
     },
@@ -693,7 +748,8 @@
             "max": 215,
             "min": -40
           },
-          "name": "Front Right Tire Temperature"
+          "name": "Front Right Tire Temperature",
+          "suggestedMetric": "frontRightTireTemp"
         }
       ]
     },
@@ -714,7 +770,8 @@
             "max": 215,
             "min": -40
           },
-          "name": "Rear Left Tire Temperature"
+          "name": "Rear Left Tire Temperature",
+          "suggestedMetric": "rearLeftTireTemp"
         }
       ]
     },
@@ -735,73 +792,180 @@
             "max": 215,
             "min": -40
           },
-          "name": "Rear Right Tire Temperature"
+          "name": "Rear Right Tire Temperature",
+          "suggestedMetric": "rearRightTireTemp"
         }
       ]
     },
     {
-      "hdr": "7E8",
+      "hdr": "7E0",
       "cmd": {
-        "01": "31"
+        "22": "D920"
       },
-      "freq": 1,
+      "freq": 10,
       "signals": [
         {
-          "id": "LANDROVER_DISTANCE_TRAVELED",
-          "path": "Stats",
+          "id": "LANDROVER_TRANSMISSION_TEMP",
+          "path": "Transmission",
+          "fmt": {
+            "len": 8,
+            "add": -40,
+            "unit": "celsius",
+            "max": 215,
+            "min": -40
+          },
+          "name": "Transmission Fluid Temperature",
+          "suggestedMetric": "transmissionTemp"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "D921"
+      },
+      "freq": 10,
+      "signals": [
+        {
+          "id": "LANDROVER_GEAR_POSITION",
+          "path": "Transmission",
+          "fmt": {
+            "len": 8,
+            "unit": "scalar",
+            "max": 15,
+            "min": 0
+          },
+          "name": "Current Gear Position",
+          "suggestedMetric": "gearPosition"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "D930"
+      },
+      "freq": 5,
+      "signals": [
+        {
+          "id": "LANDROVER_BATTERY_VOLTAGE",
+          "path": "Electrical",
           "fmt": {
             "len": 16,
-            "unit": "kilometers",
-            "max": 6553500,
-            "min": 0,
-            "mul": 100
+            "div": 1000,
+            "unit": "volts",
+            "max": 18,
+            "min": 6
           },
-          "name": "Distance Traveled",
-          "suggestedMetric": "odometer"
+          "name": "Battery Voltage",
+          "suggestedMetric": "batteryVoltage"
         }
       ]
     },
     {
-      "hdr": "7E8",
+      "hdr": "7E0",
       "cmd": {
-        "01": "A6"
+        "22": "D931"
       },
-      "freq": 1,
+      "freq": 5,
       "signals": [
         {
-          "id": "LANDROVER_ODOMETER",
-          "path": "Stats",
+          "id": "LANDROVER_ALTERNATOR_DUTY",
+          "path": "Electrical",
           "fmt": {
-            "len": 24,
-            "unit": "kilometers",
-            "max": 1677721500,
-            "min": 0,
-            "mul": 100
+            "len": 8,
+            "unit": "percent",
+            "max": 100,
+            "min": 0
           },
-          "name": "Odometer",
-          "suggestedMetric": "odometer"
+          "name": "Alternator Duty Cycle",
+          "suggestedMetric": "alternatorDuty"
         }
       ]
     },
     {
-      "hdr": "7E8",
+      "hdr": "7E0",
       "cmd": {
-        "01": "A7"
+        "22": "D940"
       },
-      "freq": 1,
+      "freq": 2,
       "signals": [
         {
-          "id": "LANDROVER_ODOMETER_MILES",
-          "path": "Stats",
+          "id": "LANDROVER_AC_COMPRESSOR_STATUS",
+          "path": "Climate",
           "fmt": {
-            "len": 24,
-            "unit": "miles",
-            "max": 1677721500,
-            "min": 0,
-            "mul": 100
+            "bix": 0,
+            "len": 1,
+            "unit": "noyes",
+            "max": 1,
+            "min": 0
           },
-          "name": "Odometer (Miles)",
-          "suggestedMetric": "odometer"
+          "name": "AC Compressor Status",
+          "suggestedMetric": "acCompressorStatus"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "D941"
+      },
+      "freq": 2,
+      "signals": [
+        {
+          "id": "LANDROVER_CABIN_TEMP",
+          "path": "Climate",
+          "fmt": {
+            "len": 8,
+            "add": -40,
+            "unit": "celsius",
+            "max": 87.5,
+            "min": -40
+          },
+          "name": "Cabin Temperature",
+          "suggestedMetric": "cabinTemp"
+        }
+      ]
+    },
+    {
+      "hdr": "7DF",
+      "cmd": {
+        "22": "F190"
+      },
+      "freq": 30,
+      "signals": [
+        {
+          "id": "LANDROVER_VIN",
+          "path": "Vehicle",
+          "fmt": {
+            "len": 136,
+            "unit": "ascii",
+            "max": 17,
+            "min": 17
+          },
+          "name": "Vehicle Identification Number",
+          "suggestedMetric": "vin"
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": {
+        "22": "F186"
+      },
+      "freq": 30,
+      "signals": [
+        {
+          "id": "LANDROVER_ECU_SERIAL",
+          "path": "Vehicle",
+          "fmt": {
+            "len": 64,
+            "unit": "ascii",
+            "max": 8,
+            "min": 8
+          },
+          "name": "ECU Serial Number",
+          "suggestedMetric": "ecuSerial"
         }
       ]
     }
