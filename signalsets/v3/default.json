@@ -1,115 +1,73 @@
-{ "commands": [
-{ "hdr": "7E8", "cmd": {"01": "0D"}, "freq": 1, "signals": [{"id": "LANDROVER_VSS", "path": "Movement", "fmt": {"len": 8, "max": 255, "unit": "kilometersPerHour", "min": 0}, "name": "Vehicle Speed", "suggestedMetric": "speed"}]},
-{ "hdr": "7E8", "cmd": {"01": "0C"}, "freq": 1, "signals": [{"id": "LANDROVER_ENGINE_RPM", "path": "Engine", "fmt": {"len": 16, "div": 4, "max": 16383, "unit": "rpm", "min": 0}, "name": "Engine RPM"}]},
-{ "hdr": "7E8", "cmd": {"01": "05"}, "freq": 1, "signals": [{"id": "LANDROVER_COOLANT_TEMP", "path": "Engine", "fmt": {"len": 8, "add": -40, "max": 215, "unit": "celsius", "min": 0}, "name": "Coolant Temperature"}]},
-{ "hdr": "732", "cmd": {"22": "D928"}, "freq": 1, "signals": [{"id": "LANDROVER_PARKED", "path": "Movement", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "yesno", "min": 0}, "name": "Parked?"}]},
-{ "hdr": "7E8", "cmd": {"01": "04"}, "freq": 1, "signals": [{"id": "LANDROVER_ENGINE_LOAD", "path": "Engine", "fmt": {"len": 8, "max": 100, "unit": "percent", "min": 0}, "name": "Engine Load"}]},
-{ "hdr": "7E8", "cmd": {"01": "0F"}, "freq": 1, "signals": [{"id": "LANDROVER_IAT", "path": "Engine", "fmt": {"len": 8, "add": -40, "unit": "celsius", "max": 255, "min": 0}, "name": "Intake Air Temperature"}]},
-{ "hdr": "7E8", "cmd": {"01": "10"}, "freq": 1, "signals": [{"id": "LANDROVER_MAF", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "gramsPerSecond", "max": 255, "min": 0}, "name": "Mass Air Flow"}]},
-{ "hdr": "7E8", "cmd": {"01": "1F"}, "freq": 1, "signals": [{"id": "LANDROVER_TIME_SINCE_ENGINE_START", "path": "Clocks", "fmt": {"len": 16, "unit": "seconds", "max": 65535, "min": 0}, "name": "Time Since Engine Start"}]},
-{ "hdr": "7E0", "cmd": {"22": "F300"}, "freq": 5, "signals": [{"id": "LANDROVER_ENGINE_OIL_TEMP", "path": "Engine", "fmt": {"len": 8, "add": -40, "unit": "celsius", "max": 255, "min": 0}, "name": "Engine Oil Temp"}]},
-{ "hdr": "7E0", "cmd": {"22": "F200"}, "freq": 5, "signals": [{"id": "LANDROVER_ENGINE_OIL_VOL", "path": "Engine", "fmt": {"len": 8, "div": 10, "unit": "liters", "max": 255, "min": 0}, "name": "Engine Oil Volume"}]},
-{ "hdr": "7E0", "cmd": {"22": "33E"}, "freq": 5, "signals": [{"id": "LANDROVER_BOOST", "path": "Engine", "fmt": {"len": 8, "unit": "kilopascal", "max": 255, "min": 0}, "name": "Boost"}]},
-{ "hdr": "7E0", "cmd": {"22": "5200"}, "freq": 5, "signals": [{"id": "LANDROVER_IAT2", "path": "Engine", "fmt": {"len": 8, "unit": "celsius", "max": 255, "min": 0}, "name": "IAT2"}]},
-{ "hdr": "7E8", "cmd": {"01": "03"}, "freq": 1, "signals": [{"id": "LANDROVER_FUEL_SYS_STATUS", "path": "Engine", "fmt": {"len": 8, "unit": "scalar", "max": 255, "min": 0}, "name": "Fuel System Status"}]},
-{ "hdr": "7E8", "cmd": {"01": "06"}, "freq": 1, "signals": [{"id": "LANDROVER_SHORT_TERM_FUEL_TRIM_B1", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": -100}, "name": "Short Term Fuel Trim Bank 1"}]},
-{ "hdr": "7E8", "cmd": {"01": "07"}, "freq": 1, "signals": [{"id": "LANDROVER_LONG_TERM_FUEL_TRIM_B1", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": -100}, "name": "Long Term Fuel Trim Bank 1"}]},
-{ "hdr": "7E8", "cmd": {"01": "0A"}, "freq": 1, "signals": [{"id": "LANDROVER_FUEL_PRESSURE", "path": "Engine", "fmt": {"len": 8, "unit": "kilopascal", "max": 765, "min": 0}, "name": "Fuel Pressure"}]},
-{ "hdr": "7E8", "cmd": {"01": "11"}, "freq": 1, "signals": [{"id": "LANDROVER_THROTTLE_POS", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Throttle Position"}]},
-{ "hdr": "7E8", "cmd": {"01": "13"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_1_VOLT", "path": "Engine", "fmt": {"len": 8, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 1 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "1D"}, "freq": 1, "signals": [{"id": "LANDROVER_DIST_MIL_ON", "path": "Stats", "fmt": {"len": 16, "unit": "kilometers", "max": 65535, "min": 0}, "name": "Distance with MIL On"}]},
-{ "hdr": "7E8", "cmd": {"01": "21"}, "freq": 1, "signals": [{"id": "LANDROVER_DIST_SINCE_CODES_CLEARED", "path": "Stats", "fmt": {"len": 16, "unit": "kilometers", "max": 65535, "min": 0}, "name": "Distance Since Codes Cleared", "suggestedMetric": "distanceSinceDTCsCleared"}]},
-{ "hdr": "7E0", "cmd": {"22": "F150"}, "freq": 5, "signals": [{"id": "LANDROVER_FUEL_LEVEL", "path": "Fuel", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Fuel Level", "suggestedMetric": "fuelTankLevel"}]},
-
-{ "hdr": "7E8", "cmd": {"01": "33"}, "freq": 1, "signals": [{"id": "LANDROVER_BARO_PRESSURE", "path": "Engine", "fmt": {"len": 8, "unit": "kilopascal", "max": 255, "min": 0}, "name": "Barometric Pressure"}]},
-{ "hdr": "7E8", "cmd": {"01": "46"}, "freq": 30, "signals": [{"id": "LANDROVER_AMBIENT_AIR_TEMP", "path": "Climate", "fmt": {"len": 8, "max": 87.5, "min": -40, "div": 2, "add": -40, "unit": "celsius"}, "name": "Ambient Air Temperature"}]},
-{ "hdr": "7E8", "cmd": {"01": "4D"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_THROTTLE_ACTUATOR", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Commanded Throttle Actuator"}]},
-{ "hdr": "7E8", "cmd": {"01": "5C"}, "freq": 1, "signals": [{"id": "LANDROVER_ENGINE_OIL_TEMP_STD", "path": "Engine", "fmt": {"len": 8, "add": -40, "unit": "celsius", "max": 215, "min": -40}, "name": "Engine Oil Temperature (Std)"}]},
-
-{ "hdr": "7E8", "cmd": {"01": "31"}, "freq": 1, "signals": [{"id": "LANDROVER_DISTANCE_TRAVELED", "path": "Stats", "fmt": {"len": 16, "unit": "kilometers", "max": 65535, "min": 0}, "name": "Distance Traveled", "suggestedMetric": "odometer"}]},
-{ "hdr": "7E8", "cmd": {"01": "A6"}, "freq": 1, "signals": [{"id": "LANDROVER_ODOMETER", "path": "Stats", "fmt": {"len": 24, "unit": "kilometers", "max": 1677721500, "min": 0, "mul": 100}, "name": "Odometer", "suggestedMetric": "odometer"}]},
-{ "hdr": "7E8", "cmd": {"01": "A7"}, "freq": 1, "signals": [{"id": "LANDROVER_ODOMETER_MILES", "path": "Stats", "fmt": {"len": 24, "unit": "miles", "max": 1677721500, "min": 0, "mul": 100}, "name": "Odometer (Miles)", "suggestedMetric": "odometer"}]},
-{ "hdr": "7E8", "cmd": {"01": "42"}, "freq": 1, "signals": [{"id": "LANDROVER_CONTROL_MODULE_VOLTAGE", "path": "Engine", "fmt": {"len": 16, "div": 1000, "unit": "volts", "max": 65.535, "min": 0}, "name": "Control Module Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "43"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_LOAD_VALUE", "path": "Engine", "fmt": {"len": 16, "div": 255, "unit": "percent", "max": 25700, "min": 0}, "name": "Absolute Load Value"}]},
-{ "hdr": "7E8", "cmd": {"01": "44"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_EQUIV_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "Commanded Equivalence Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "45"}, "freq": 1, "signals": [{"id": "LANDROVER_RELATIVE_THROTTLE_POS", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Relative Throttle Position"}]},
-{ "hdr": "7E8", "cmd": {"01": "47"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_THROTTLE_POS_B", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Absolute Throttle Position B"}]},
-{ "hdr": "7E8", "cmd": {"01": "48"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_THROTTLE_POS_C", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Absolute Throttle Position C"}]},
-{ "hdr": "7E8", "cmd": {"01": "49"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_D", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position D"}]},
-{ "hdr": "7E8", "cmd": {"01": "4A"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_E", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position E"}]},
-{ "hdr": "7E8", "cmd": {"01": "4B"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_F", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position F"}]},
-
-{ "hdr": "7E8", "cmd": {"01": "4C"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_THROTTLE_ACTUATOR_CTRL", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Commanded Throttle Actuator Control"}]},
-{ "hdr": "7E0", "cmd": {"22": "F40C"}, "freq": 10, "signals": [{"id": "LANDROVER_BATTERY_VOLTAGE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "volts", "max": 25.5, "min": 0}, "name": "Battery Voltage"}]},
-{ "hdr": "7E0", "cmd": {"22": "F442"}, "freq": 10, "signals": [{"id": "LANDROVER_VEHICLE_SPEED_2", "path": "Movement", "fmt": {"len": 16, "div": 100, "unit": "kilometersPerHour", "max": 655.35, "min": 0}, "name": "Vehicle Speed (Enhanced)"}]},
-{ "hdr": "7E0", "cmd": {"22": "F1A3"}, "freq": 30, "signals": [{"id": "LANDROVER_INTAKE_AIR_TEMP_2", "path": "Engine", "fmt": {"len": 8, "add": -40, "unit": "celsius", "max": 215, "min": -40}, "name": "Intake Air Temperature 2"}]},
-{ "hdr": "7E0", "cmd": {"22": "F18C"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure"}]},
-{ "hdr": "7E0", "cmd": {"22": "F190"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE_ALT4", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure Alt4"}]},
-{ "hdr": "7E0", "cmd": {"22": "F196"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE_ALT10", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure Alt10"}]},
-{ "hdr": "7E0", "cmd": {"22": "F1AB"}, "freq": 5, "signals": [{"id": "LANDROVER_TURBO_BOOST_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "kilopascal", "max": 655.35, "min": 0}, "name": "Turbo Boost Pressure"}]},
-{ "hdr": "7E0", "cmd": {"22": "F18D"}, "freq": 5, "signals": [{"id": "LANDROVER_INTAKE_MANIFOLD_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "kilopascal", "max": 655.35, "min": 0}, "name": "Intake Manifold Pressure"}]},
-{ "hdr": "7E8", "cmd": {"01": "08"}, "freq": 1, "signals": [{"id": "LANDROVER_TIMING_ADVANCE", "path": "Engine", "fmt": {"len": 8, "div": 2, "add": -128, "unit": "degrees", "max": 127, "min": -128}, "name": "Timing Advance"}]},
-{ "hdr": "7E8", "cmd": {"01": "0B"}, "freq": 1, "signals": [{"id": "LANDROVER_INTAKE_MANIFOLD_PRESSURE_STD", "path": "Engine", "fmt": {"len": 8, "unit": "kilopascal", "max": 255, "min": 0}, "name": "Intake Manifold Pressure (Std)"}]},
-{ "hdr": "7E8", "cmd": {"01": "0E"}, "freq": 1, "signals": [{"id": "LANDROVER_TIMING_ADVANCE_2", "path": "Engine", "fmt": {"len": 8, "div": 2, "add": -128, "unit": "degrees", "max": 127, "min": -128}, "name": "Timing Advance 2"}]},
-{ "hdr": "7E8", "cmd": {"01": "14"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_1_VOLT_2", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 1 Voltage 2"}]},
-{ "hdr": "7E8", "cmd": {"01": "15"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_2_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 2 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "16"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_3_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 3 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "17"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_4_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 4 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "18"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_5_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 5 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "19"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_6_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 6 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "1A"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_7_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 7 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "1B"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_8_VOLT", "path": "Engine", "fmt": {"len": 8, "div": 200, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 8 Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "1C"}, "freq": 1, "signals": [{"id": "LANDROVER_OBD_STANDARD", "path": "Engine", "fmt": {"len": 8, "unit": "scalar", "max": 255, "min": 0}, "name": "OBD Standard"}]},
-{ "hdr": "7E8", "cmd": {"01": "1E"}, "freq": 1, "signals": [{"id": "LANDROVER_PTO_STATUS", "path": "Engine", "fmt": {"len": 8, "unit": "scalar", "max": 255, "min": 0}, "name": "PTO Status"}]},
-{ "hdr": "7E8", "cmd": {"01": "20"}, "freq": 1, "signals": [{"id": "LANDROVER_AUX_INPUT_STATUS", "path": "Engine", "fmt": {"len": 8, "unit": "scalar", "max": 255, "min": 0}, "name": "Auxiliary Input Status"}]},
-{ "hdr": "7E8", "cmd": {"01": "22"}, "freq": 1, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE_STD", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure (Std)"}]},
-{ "hdr": "7E8", "cmd": {"01": "23"}, "freq": 1, "signals": [{"id": "LANDROVER_FUEL_RAIL_GAUGE_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Gauge Pressure"}]},
-{ "hdr": "7E8", "cmd": {"01": "24"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_1_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 1 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "25"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_2_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 2 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "26"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_3_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 3 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "27"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_4_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 4 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "28"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_5_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 5 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "29"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_6_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 6 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "2A"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_7_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 7 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "2B"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_8_WIDE_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "O2 Sensor 8 Wide Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "2C"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_EGR", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Commanded EGR"}]},
-{ "hdr": "7E8", "cmd": {"01": "2D"}, "freq": 1, "signals": [{"id": "LANDROVER_EGR_ERROR", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": -100}, "name": "EGR Error"}]},
-{ "hdr": "7E8", "cmd": {"01": "2E"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_EVAPORATIVE_PURGE", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Commanded Evaporative Purge"}]},
-{ "hdr": "7E8", "cmd": {"01": "2F"}, "freq": 1, "signals": [{"id": "LANDROVER_FUEL_LEVEL_INPUT", "path": "Fuel", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Fuel Level Input (Std)"}]},
-{ "hdr": "7E8", "cmd": {"01": "30"}, "freq": 1, "signals": [{"id": "LANDROVER_WARM_UPS_SINCE_CODES_CLEARED", "path": "Stats", "fmt": {"len": 8, "unit": "scalar", "max": 255, "min": 0}, "name": "Warm-ups Since Codes Cleared"}]},
-{ "hdr": "7E8", "cmd": {"01": "32"}, "freq": 1, "signals": [{"id": "LANDROVER_EVAP_VAPOR_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 4, "unit": "pascal", "max": 8191, "min": -8192}, "name": "EVAP Vapor Pressure"}]},
-{ "hdr": "7E8", "cmd": {"01": "34"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_1_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 1 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "35"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_2_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 2 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "36"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_3_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 3 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "37"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_4_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 4 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "38"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_5_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 5 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "39"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_6_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 6 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "3A"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_7_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 7 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "3B"}, "freq": 1, "signals": [{"id": "LANDROVER_O2_SENSOR_8_WIDE_VOLT", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "volts", "max": 1.275, "min": 0}, "name": "O2 Sensor 8 Wide Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "3C"}, "freq": 1, "signals": [{"id": "LANDROVER_CATALYST_TEMP_B1S1", "path": "Engine", "fmt": {"len": 16, "div": 10, "add": -40, "unit": "celsius", "max": 6513.5, "min": -40}, "name": "Catalyst Temperature Bank 1 Sensor 1"}]},
-{ "hdr": "7E8", "cmd": {"01": "3D"}, "freq": 1, "signals": [{"id": "LANDROVER_CATALYST_TEMP_B2S1", "path": "Engine", "fmt": {"len": 16, "div": 10, "add": -40, "unit": "celsius", "max": 6513.5, "min": -40}, "name": "Catalyst Temperature Bank 2 Sensor 1"}]},
-{ "hdr": "7E8", "cmd": {"01": "3E"}, "freq": 1, "signals": [{"id": "LANDROVER_CATALYST_TEMP_B1S2", "path": "Engine", "fmt": {"len": 16, "div": 10, "add": -40, "unit": "celsius", "max": 6513.5, "min": -40}, "name": "Catalyst Temperature Bank 1 Sensor 2"}]},
-{ "hdr": "7E8", "cmd": {"01": "3F"}, "freq": 1, "signals": [{"id": "LANDROVER_CATALYST_TEMP_B2S2", "path": "Engine", "fmt": {"len": 16, "div": 10, "add": -40, "unit": "celsius", "max": 6513.5, "min": -40}, "name": "Catalyst Temperature Bank 2 Sensor 2"}]},
-{ "hdr": "7E8", "cmd": {"01": "41"}, "freq": 1, "signals": [{"id": "LANDROVER_MONITOR_STATUS_THIS_DRIVE_CYCLE", "path": "Engine", "fmt": {"len": 32, "unit": "scalar", "max": 4294967295, "min": 0}, "name": "Monitor Status This Drive Cycle"}]},
-{ "hdr": "7E8", "cmd": {"01": "42"}, "freq": 1, "signals": [{"id": "LANDROVER_CONTROL_MODULE_VOLTAGE", "path": "Engine", "fmt": {"len": 16, "div": 1000, "unit": "volts", "max": 65.535, "min": 0}, "name": "Control Module Voltage"}]},
-{ "hdr": "7E8", "cmd": {"01": "43"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_LOAD_VALUE", "path": "Engine", "fmt": {"len": 16, "div": 255, "unit": "percent", "max": 25700, "min": 0}, "name": "Absolute Load Value"}]},
-{ "hdr": "7E8", "cmd": {"01": "44"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_EQUIV_RATIO", "path": "Engine", "fmt": {"len": 16, "div": 32768, "unit": "ratio", "max": 2, "min": 0}, "name": "Commanded Equivalence Ratio"}]},
-{ "hdr": "7E8", "cmd": {"01": "45"}, "freq": 1, "signals": [{"id": "LANDROVER_RELATIVE_THROTTLE_POS", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Relative Throttle Position"}]},
-{ "hdr": "7E8", "cmd": {"01": "46"}, "freq": 30, "signals": [{"id": "LANDROVER_AMBIENT_AIR_TEMP", "path": "Climate", "fmt": {"len": 8, "max": 87.5, "min": -40, "div": 2, "add": -40, "unit": "celsius"}, "name": "Ambient Air Temperature"}]},
-{ "hdr": "7E8", "cmd": {"01": "47"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_THROTTLE_POS_B", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Absolute Throttle Position B"}]},
-{ "hdr": "7E8", "cmd": {"01": "48"}, "freq": 1, "signals": [{"id": "LANDROVER_ABS_THROTTLE_POS_C", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Absolute Throttle Position C"}]},
-{ "hdr": "7E8", "cmd": {"01": "49"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_D", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position D"}]},
-{ "hdr": "7E8", "cmd": {"01": "4A"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_E", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position E"}]},
-{ "hdr": "7E8", "cmd": {"01": "4B"}, "freq": 1, "signals": [{"id": "LANDROVER_ACC_PEDAL_POS_F", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Accelerator Pedal Position F"}]},
-
-{ "hdr": "7E8", "cmd": {"01": "4C"}, "freq": 1, "signals": [{"id": "LANDROVER_COMMANDED_THROTTLE_ACTUATOR_CTRL", "path": "Engine", "fmt": {"len": 8, "unit": "percent", "max": 100, "min": 0}, "name": "Commanded Throttle Actuator Control"}]},
-{ "hdr": "7E0", "cmd": {"22": "F40C"}, "freq": 10, "signals": [{"id": "LANDROVER_BATTERY_VOLTAGE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "volts", "max": 25.5, "min": 0}, "name": "Battery Voltage"}]},
-{ "hdr": "7E0", "cmd": {"22": "F442"}, "freq": 10, "signals": [{"id": "LANDROVER_VEHICLE_SPEED_2", "path": "Movement", "fmt": {"len": 16, "div": 100, "unit": "kilometersPerHour", "max": 655.35, "min": 0}, "name": "Vehicle Speed (Enhanced)"}]},
-{ "hdr": "7E0", "cmd": {"22": "F1A3"}, "freq": 30, "signals": [{"id": "LANDROVER_INTAKE_AIR_TEMP_2", "path": "Engine", "fmt": {"len": 8, "add": -40, "unit": "celsius", "max": 215, "min": -40}, "name": "Intake Air Temperature 2"}]},
-{ "hdr": "7E0", "cmd": {"22": "F18C"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure"}]},
-{ "hdr": "7E0", "cmd": {"22": "F190"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE_ALT4", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure Alt4"}]},
-{ "hdr": "7E0", "cmd": {"22": "F196"}, "freq": 10, "signals": [{"id": "LANDROVER_FUEL_RAIL_PRESSURE_ALT10", "path": "Engine", "fmt": {"len": 16, "div": 10, "unit": "kilopascal", "max": 6553.5, "min": 0}, "name": "Fuel Rail Pressure Alt10"}]},
-{ "hdr": "7E0", "cmd": {"22": "F1AB"}, "freq": 5, "signals": [{"id": "LANDROVER_TURBO_BOOST_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "kilopascal", "max": 655.35, "min": 0}, "name": "Turbo Boost Pressure"}]},
-{ "hdr": "7E0", "cmd": {"22": "F18D"}, "freq": 5, "signals": [{"id": "LANDROVER_INTAKE_MANIFOLD_PRESSURE", "path": "Engine", "fmt": {"len": 16, "div": 100, "unit": "kilopascal", "max": 655.35, "min": 0}, "name": "Intake Manifold Pressure"}]}
-]
-}
+{
+    "commands": [
+      { "hdr": "7DF", "cmd": { "01": "46" }, "freq": 1,
+        "signals": [
+          { "id": "LR4_SAE_AAT", "fmt": { "len": 8, "unit": "celsius" }, "name": "Ambient air temperature", "description": "A - 40 °C (SAE PID 0x46)" },
+          { "id": "LR4_SAE_AAT_ADJ", "fmt": { "len": 8, "offs": -10, "unit": "celsius" }, "name": "Ambient air temperature (adjusted)", "description": "Subtract 10 °C to match outside reality, keep both until proven." }
+        ]
+      },
+      { "hdr": "7DF", "cmd": { "01": "0C" }, "freq": 5,
+        "signals": [{ "id": "LR4_SAE_RPM", "fmt": { "len": 16, "mul": 0.25, "unit": "rpm" }, "name": "Engine speed" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "0D" }, "freq": 2,
+        "signals": [{ "id": "LR4_SAE_SPEED", "fmt": { "len": 8, "unit": "km/h" }, "name": "Vehicle speed" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "05" }, "freq": 1,
+        "signals": [{ "id": "LR4_SAE_ECT", "fmt": { "len": 8, "unit": "celsius" }, "name": "Engine coolant temperature" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "0F" }, "freq": 1,
+        "signals": [{ "id": "LR4_SAE_IAT", "fmt": { "len": 8, "unit": "celsius" }, "name": "Intake air temperature" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "10" }, "freq": 2,
+        "signals": [{ "id": "LR4_SAE_MAF", "fmt": { "len": 16, "mul": 0.01, "unit": "grams_per_second" }, "name": "Mass air flow" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "11" }, "freq": 2,
+        "signals": [{ "id": "LR4_SAE_TPS", "fmt": { "len": 8, "mul": 0.3921568627, "unit": "percent" }, "name": "Throttle position" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "2E" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_EVAP_CMD", "fmt": { "len": 8, "mul": 0.3921568627, "unit": "percent" }, "name": "Commanded evaporative purge" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "2F" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_FUEL", "fmt": { "len": 8, "mul": 0.3921568627, "unit": "percent" }, "name": "Fuel level" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "31" }, "freq": 0.1,
+        "signals": [{ "id": "LR4_SAE_DIST_SINCE_CLR", "fmt": { "len": 16, "unit": "km" }, "name": "Distance since DTC clear" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "1F" }, "freq": 0.2,
+        "signals": [{ "id": "LR4_SAE_RUNTIME", "fmt": { "len": 16, "unit": "seconds" }, "name": "Run time since engine start" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "4C" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_CMD_THR_ACT", "fmt": { "len": 8, "mul": 0.3921568627, "unit": "percent" }, "name": "Commanded throttle actuator" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "5A" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_REL_PEDAL", "fmt": { "len": 8, "mul": 0.3921568627, "unit": "percent" }, "name": "Relative accelerator pedal position" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "5C" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_OILT", "fmt": { "len": 8, "unit": "celsius" }, "name": "Engine oil temperature" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "33" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_BARO", "fmt": { "len": 8, "unit": "kPa" }, "name": "Barometric pressure" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "42" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_VBAT", "fmt": { "len": 16, "mul": 0.001, "unit": "volts" }, "name": "Control module voltage" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "43" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_ABS_LOAD", "fmt": { "len": 16, "mul": 0.3921568627, "unit": "percent" }, "name": "Absolute load value" }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "59" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_FRP_ABS", "fmt": { "len": 16, "mul": 10, "unit": "kPa" }, "name": "Fuel rail absolute pressure", "description": "Usually for GDI/diesel. Returns 10*(256*A+B)." }]
+      },
+      { "hdr": "7DF", "cmd": { "01": "5E" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_SAE_FUEL_RATE", "fmt": { "len": 16, "mul": 0.05, "unit": "L/h" }, "name": "Engine fuel rate" }]
+      },
+      { "hdr": "7E0", "cmd": { "22": "033E" }, "freq": 0.5,
+        "signals": [{ "id": "LR4_ECU_033E_RAW", "fmt": { "len": 16, "unit": "raw" }, "name": "0x033E (raw)", "description": "Manufacturer PID that responded in your logs. Keep raw until we confirm scaling." }]
+      },
+      { "hdr": "7DF", "cmd": { "09": "02" }, "freq": 0.02,
+        "signals": [{ "id": "LR4_VIN", "fmt": { "len": 136, "unit": "ascii" }, "name": "VIN", "description": "Mode 09 VIN (string). Some stacks deliver multi-frame ASCII." }]
+      },
+      { "hdr": "7E2", "cmd": { "22": "F121" }, "freq": 0.05,
+        "signals": [{ "id": "LR4_IC_ODOMETER_CANDIDATE", "fmt": { "len": 24, "unit": "km" }, "name": "Odometer (candidate F121)", "description": "Instrument cluster DID candidate. Expect ~153,300 km for 95,283 mi if correct." }]
+      }
+    ]
+  }
