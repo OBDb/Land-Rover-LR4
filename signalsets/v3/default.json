@@ -100,7 +100,7 @@
         "signals": [
           {
             "id": "LR4_SAE_DIST_SINCE_CLR",
-            "path": "Diagnostics",
+            "path": "DTCs",
             "fmt": { "len": 16, "max": 65535, "unit": "kilometers" },
             "name": "Distance since DTC clear",
             "suggestedMetric": "distanceSinceDTCsCleared"
@@ -179,7 +179,7 @@
         "signals": [
           {
             "id": "LR4_SAE_BARO",
-            "path": "Environment",
+            "path": "Climate",
             "fmt": { "len": 8, "max": 255, "unit": "kilopascals" },
             "name": "Barometric pressure"
           }
@@ -196,133 +196,6 @@
             "fmt": { "len": 16, "max": 20, "mul": 0.001, "unit": "volts" },
             "name": "Control module voltage",
             "suggestedMetric": "starterBatteryVoltage"
-          }
-        ]
-      },
-      {
-        "hdr": "7DF",
-        "cmd": {"01": "5E"},
-        "freq": 1,
-        "signals": [
-          {
-            "id": "LR4_SAE_FUEL_RATE",
-            "path": "Fuel",
-            "fmt": { "len": 16, "max": 500, "mul": 0.05, "unit": "litersPerHour" },
-            "name": "Engine fuel rate"
-          }
-        ]
-      },
-
-      {
-        "hdr": "7E0",
-        "rax": "7E8",
-        "cmd": {"22": "033E"},
-        "freq": 0.5,
-        "signals": [
-          {
-            "id": "LR4_ECU_033E_RAW",
-            "path": "Engine",
-            "fmt": { "len": 16, "max": 65535, "unit": "unitless" },
-            "name": "0x033E (raw)",
-            "description": "Manufacturer PID observed responding on your LR4. Keep raw until correlated."
-          }
-        ]
-      },
-
-      {
-        "hdr": "7E2",
-        "rax": "7EA",
-        "cmd": {"22": "F121"},
-        "freq": 1,
-        "signals": [
-          {
-            "id": "LR4_IC_ODOMETER_CANDIDATE",
-            "path": "Movement",
-            "fmt": { "len": 24, "max": 2000000, "unit": "kilometers" },
-            "name": "Odometer (candidate F121)",
-            "description": "Target ≈ 153,300 km for your current 95,283 mi if correct.",
-            "suggestedMetric": "odometer"
-          }
-        ]
-      },
-      {
-        "hdr": "7E0",
-        "cmd": { "01": "5E" },
-        "freq": 1,
-        "signals": [
-          {
-            "id": "LR4_SAE_FUEL_RATE_PHYS",
-            "path": "Fuel",
-            "fmt": { "len": 16, "max": 500, "mul": 0.05, "unit": "litersPerHour" },
-            "name": "Engine fuel rate (ECM addr 7E0)",
-            "description": "Some ECUs only answer 01 5E when addressed physically."
-          }
-        ]
-      },
-      {
-        "hdr": "7E0",
-        "rax": "7E8",
-        "cmd": { "22": "033E" },
-        "freq": 0.5,
-        "signals": [
-          {
-            "id": "LR4_ECU_033E_UPTIME_S",
-            "path": "Diagnostics",
-            "fmt": { "len": 16, "max": 65535, "unit": "seconds" },
-            "name": "ECU uptime (s)",
-            "description": "Mapped from 0x22033E. In your logs it rose steadily ~1 per second."
-          },
-          {
-            "id": "LR4_ECU_033E_RAW",
-            "path": "Diagnostics",
-            "fmt": { "len": 16, "max": 65535, "unit": "unitless" },
-            "name": "0x033E (raw)",
-            "description": "Raw copy kept for correlation and sanity checks."
-          }
-        ]
-      },
-      {
-        "hdr": "7E2",
-        "rax": "7EA",
-        "cmd": { "22": "F17C" },
-        "freq": 0.2,
-        "signals": [
-          {
-            "id": "LR4_IC_ODO_F17C",
-            "path": "Movement",
-            "fmt": { "len": 32, "max": 3000000, "unit": "unitless" },
-            "name": "Odometer candidate F17C",
-            "description": "Cluster DID candidate. Expect a stable value near 153300 (km) or 95283 (mi) or scaled by 10."
-          }
-        ]
-      },
-      {
-        "hdr": "7E2",
-        "rax": "7EA",
-        "cmd": { "22": "F18C" },
-        "freq": 0.2,
-        "signals": [
-          {
-            "id": "LR4_IC_ODO_F18C",
-            "path": "Movement",
-            "fmt": { "len": 32, "max": 3000000, "unit": "unitless" },
-            "name": "Odometer candidate F18C",
-            "description": "Alternate cluster DID candidate. Keep if it lands near expected odometer."
-          }
-        ]
-      },
-      {
-        "hdr": "7E2",
-        "rax": "7EA",
-        "cmd": { "22": "01A6" },
-        "freq": 0.2,
-        "signals": [
-          {
-            "id": "LR4_IC_ODO_01A6",
-            "path": "Movement",
-            "fmt": { "len": 24, "max": 3000000, "unit": "unitless" },
-            "name": "Odometer candidate 01A6",
-            "description": "Legacy/KWP-era style ID some JLR clusters still alias. Safe to try."
           }
         ]
       }
