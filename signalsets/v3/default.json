@@ -109,6 +109,19 @@
       },
       {
         "hdr": "7DF",
+        "cmd": {"01": "21"},
+        "freq": 1,
+        "signals": [
+          {
+            "id": "LR4_SAE_DIST_WITH_MIL",
+            "path": "DTCs",
+            "fmt": { "len": 16, "max": 65535, "unit": "kilometers" },
+            "name": "Distance with MIL on"
+          }
+        ]
+      },
+      {
+        "hdr": "7DF",
         "cmd": {"01": "1F"},
         "freq": 0.5,
         "signals": [
@@ -130,45 +143,6 @@
             "path": "Climate",
             "fmt": { "len": 8, "min": -60, "max": 80, "add": -40, "unit": "celsius" },
             "name": "Ambient air temperature"
-          }
-        ]
-      },
-      {
-        "hdr": "7DF",
-        "cmd": {"01": "5A"},
-        "freq": 0.5,
-        "signals": [
-          {
-            "id": "LR4_SAE_REL_PEDAL",
-            "path": "Engine",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Relative accelerator pedal position"
-          }
-        ]
-      },
-      {
-        "hdr": "7DF",
-        "cmd": {"01": "4C"},
-        "freq": 0.5,
-        "signals": [
-          {
-            "id": "LR4_SAE_CMD_THR_ACT",
-            "path": "Engine",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Commanded throttle actuator"
-          }
-        ]
-      },
-      {
-        "hdr": "7DF",
-        "cmd": {"01": "5C"},
-        "freq": 0.5,
-        "signals": [
-          {
-            "id": "LR4_SAE_OILT",
-            "path": "Engine",
-            "fmt": { "len": 8, "min": -40, "max": 180, "add": -40, "unit": "celsius" },
-            "name": "Engine oil temperature"
           }
         ]
       },
@@ -200,6 +174,46 @@
         ]
       },
       {
+        "hdr": "7DF",
+        "cmd": {"01": "2E"},
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_SAE_EVAP_CMD",
+            "path": "Fuel",
+            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
+            "name": "Commanded evaporative purge"
+          }
+        ]
+      },
+      {
+        "hdr": "7DF",
+        "cmd": {"01": "04"},
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_SAE_LOAD_CALC",
+            "path": "Engine",
+            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
+            "name": "Calculated engine load"
+          }
+        ]
+      },
+      {
+        "hdr": "7DF",
+        "cmd": {"01": "0E"},
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_SAE_SPARK_ADV",
+            "path": "Engine",
+            "fmt": { "len": 8, "min": -64, "max": 63.5, "mul": 0.5, "add": -64, "unit": "degrees" },
+            "name": "Timing advance"
+          }
+        ]
+      },
+
+      {
         "hdr": "7E0",
         "rax": "7E8",
         "cmd": { "22": "03F3" },
@@ -220,10 +234,16 @@
         "freq": 0.5,
         "signals": [
           {
-            "id": "LR4_ENGINE_OIL_VOLUME",
+            "id": "LR4_ENGINE_OIL_VOLUME_L",
             "path": "Engine",
             "fmt": { "len": 8, "mul": 0.1, "min": 0, "max": 25.5, "unit": "liters" },
-            "name": "AJ133 Engine Oil Volume"
+            "name": "Engine Oil Volume (L)"
+          },
+          {
+            "id": "LR4_ENGINE_OIL_VOLUME_GAL",
+            "path": "Engine",
+            "fmt": { "len": 8, "mul": 0.0264172, "min": 0, "max": 6.74, "unit": "gallons" },
+            "name": "Engine Oil Volume (gal)"
           }
         ]
       },
@@ -299,7 +319,106 @@
             "path": "Engine",
             "fmt": { "len": 8, "min": 0, "max": 999, "unit": "celsius" },
             "name": "AJ133 IAT2"
+          },
+          {
+            "id": "LR4_IAT2_OFFSET",
+            "path": "Engine",
+            "fmt": { "len": 8, "min": -40, "max": 150, "add": -40, "unit": "celsius" },
+            "name": "AJ133 IAT2 (offset)"
           }
+        ]
+      },
+
+      {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": {"01": "5E"},
+        "freq": 1,
+        "signals": [
+          {
+            "id": "LR4_SAE_FUEL_RATE_PHYS",
+            "path": "Fuel",
+            "fmt": { "len": 16, "max": 500, "mul": 0.05, "unit": "litersPerHour" },
+            "name": "Engine fuel rate (ECM)"
+          }
+        ]
+      },
+
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F121" },
+        "freq": 1,
+        "signals": [
+          {
+            "id": "LR4_IC_ODOMETER_F121",
+            "path": "Movement",
+            "fmt": { "len": 24, "max": 2000000, "unit": "kilometers" },
+            "name": "Odometer (F121)"
+          }
+        ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F17C" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IC_ODOMETER_F17C",
+            "path": "Movement",
+            "fmt": { "len": 32, "max": 2000000, "unit": "kilometers" },
+            "name": "Odometer (F17C)"
+          }
+        ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F18C" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IC_ODOMETER_F18C",
+            "path": "Movement",
+            "fmt": { "len": 32, "max": 2000000, "unit": "kilometers" },
+            "name": "Odometer (F18C)"
+          }
+        ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "21": "A6" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IC_ODOMETER_21A6",
+            "path": "Movement",
+            "fmt": { "len": 24, "max": 2000000, "unit": "kilometers" },
+            "name": "Odometer (21A6)"
+          }
+        ]
+      },
+
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F172" },
+        "freq": 0.5,
+        "signals": [
+          { "id": "LR4_IC_ALT_F172_RAW",  "path": "Climate", "fmt": { "len": 16, "max": 20000, "unit": "unitless" }, "name": "Altitude (IC F172 raw)" },
+          { "id": "LR4_IC_ALT_F172_FT2M", "path": "Climate", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (IC F172 feet→m)" }
+        ]
+      },
+      {
+        "hdr": "7E5",
+        "rax": "7ED",
+        "cmd": { "22": "F172" },
+        "freq": 0.5,
+        "signals": [
+          { "id": "LR4_NAV_ALT_F172_RAW",  "path": "Climate", "fmt": { "len": 16, "max": 20000, "unit": "unitless" }, "name": "Altitude (NAV F172 raw)" },
+          { "id": "LR4_NAV_ALT_F172_FT2M", "path": "Climate", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (NAV F172 feet→m)" }
         ]
       }
     ]
