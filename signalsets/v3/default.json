@@ -248,9 +248,9 @@
         "signals": [
           {
             "id": "LR4_REAR_DIFF_TEMP",
-            "path": "Driveline",
+            "path": "Drivetrain",
             "fmt": { "len": 8, "add": -40, "min": -40, "max": 150, "unit": "celsius" },
-            "name": "AJ133 Locking Diff Oil Temp"
+            "name": "Locking Diff Oil Temp"
           }
         ]
       },
@@ -264,7 +264,7 @@
             "id": "LR4_MEASURED_OIL_LEVEL",
             "path": "Engine",
             "fmt": { "len": 8, "min": 0, "max": 255, "unit": "millimeters" },
-            "name": "AJ133 Oil Level"
+            "name": "Oil Level"
           }
         ]
       },
@@ -275,10 +275,10 @@
         "freq": 0.5,
         "signals": [
           {
-            "id": "LR4_AJ133_BOOST_KPA",
+            "id": "LR4_BOOST",
             "path": "Engine",
             "fmt": { "len": 8, "min": 0, "max": 255, "unit": "kilopascals" },
-            "name": "AJ133 Boost (candidate)"
+            "name": "Engine Boost"
           },
           {
             "id": "LR4_ECU_033E_UPTIME_S",
@@ -305,81 +305,80 @@
       {
         "hdr": "7E2",
         "rax": "7EA",
-        "cmd": { "22": "F173" },
+        "cmd": { "22": "F172" },
         "freq": 0.5,
         "signals": [
-          {
-            "id": "LR4_IC_ALT_F173_16_BE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F173 16-bit BE)"
-          },
-          {
-            "id": "LR4_IC_ALT_F173_16_LE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
-            "name": "Altitude (F173 16-bit LE)"
-          },
-          {
-            "id": "LR4_IC_ALT_F173_32_BE",
-            "path": "Environment",
-            "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F173 32-bit BE)"
-          }
+          { "id": "LR4_IC_ALT_F172_RAW",     "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (IC F172 raw)" },
+          { "id": "LR4_IC_ALT_F172_M",       "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (IC F172 m, 16-bit)" },
+          { "id": "LR4_IC_ALT_F172_FT2M",    "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (IC F172 feet→m)" }
         ]
       },
       {
         "hdr": "7E2",
         "rax": "7EA",
-        "cmd": { "22": "F17C" },
+        "cmd": { "22": "F174" },
         "freq": 0.5,
         "signals": [
-          {
-            "id": "LR4_IC_ALT_F17C_16_BE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F17C 16-bit BE)"
-          },
-          {
-            "id": "LR4_IC_ALT_F17C_32_BE",
-            "path": "Environment",
-            "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F17C 32-bit BE)"
-          }
+          { "id": "LR4_IC_ALT_F174_RAW",     "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (IC F174 raw)" },
+          { "id": "LR4_IC_ALT_F174_M",       "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (IC F174 m, 16-bit)" },
+          { "id": "LR4_IC_ALT_F174_FT2M",    "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (IC F174 feet→m)" }
+        ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F176" },
+        "freq": 0.5,
+        "signals": [
+          { "id": "LR4_IC_ALT_F176_RAW",     "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (IC F176 raw)" },
+          { "id": "LR4_IC_ALT_F176_M",       "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (IC F176 m, 16-bit)" },
+          { "id": "LR4_IC_ALT_F176_FT2M",    "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (IC F176 feet→m)" }
+        ]
+      },
+
+      {
+        "hdr": "7E5",
+        "rax": "7ED",
+        "cmd": { "22": "F172" },
+        "freq": 0.5,
+        "signals": [
+          { "id": "LR4_NAV_ALT_F172_RAW",    "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (NAV F172 raw)" },
+          { "id": "LR4_NAV_ALT_F172_M",      "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (NAV F172 m, 16-bit)" },
+          { "id": "LR4_NAV_ALT_F172_FT2M",   "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (NAV F172 feet→m)" }
         ]
       },
       {
         "hdr": "7E5",
         "rax": "7ED",
-        "cmd": { "22": "F173" },
+        "cmd": { "22": "F174" },
         "freq": 0.5,
         "signals": [
-          {
-            "id": "LR4_NAV_ALT_F173_16_BE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (NAV F173 16-bit BE)"
-          },
-          {
-            "id": "LR4_NAV_ALT_F173_16_LE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
-            "name": "Altitude (NAV F173 16-bit LE)"
-          }
+          { "id": "LR4_NAV_ALT_F174_RAW",    "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (NAV F174 raw)" },
+          { "id": "LR4_NAV_ALT_F174_M",      "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (NAV F174 m, 16-bit)" },
+          { "id": "LR4_NAV_ALT_F174_FT2M",   "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (NAV F174 feet→m)" }
         ]
       },
       {
         "hdr": "7E5",
         "rax": "7ED",
-        "cmd": { "22": "01A6" },
+        "cmd": { "22": "F176" },
         "freq": 0.5,
         "signals": [
-          {
-            "id": "LR4_NAV_ALT_01A6_16_BE",
-            "path": "Environment",
-            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (NAV 01A6 16-bit BE)"
-          }
+          { "id": "LR4_NAV_ALT_F176_RAW",    "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (NAV F176 raw)" },
+          { "id": "LR4_NAV_ALT_F176_M",      "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (NAV F176 m, 16-bit)" },
+          { "id": "LR4_NAV_ALT_F176_FT2M",   "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (NAV F176 feet→m)" }
+        ]
+      },
+
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "21": "A6" },
+        "freq": 0.5,
+        "signals": [
+          { "id": "LR4_IC_ALT_21A6_RAW",     "path": "Environment", "fmt": { "len": 16, "max": 20000, "unit": "unitless" },     "name": "Altitude (IC 21A6 raw KWP-style)" },
+          { "id": "LR4_IC_ALT_21A6_M",       "path": "Environment", "fmt": { "len": 16, "max": 9000,  "unit": "meters" },       "name": "Altitude (IC 21A6 m, 16-bit)" },
+          { "id": "LR4_IC_ALT_21A6_FT2M",    "path": "Environment", "fmt": { "len": 16, "mul": 0.3048, "max": 9000, "unit": "meters" }, "name": "Altitude (IC 21A6 feet→m)" }
         ]
       }
     ]
