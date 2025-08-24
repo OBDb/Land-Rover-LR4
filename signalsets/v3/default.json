@@ -200,6 +200,109 @@
         ]
       },
       {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": { "22": "03F3" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_ENGINE_OIL_TEMP",
+            "path": "Engine",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
+            "name": "AJ133 Engine Oil Temp"
+          }
+        ]
+      },
+      {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": { "22": "03F2" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_ENGINE_OIL_VOLUME",
+            "path": "Engine",
+            "fmt": { "len": 8, "mul": 0.1, "min": 0, "max": 25.5, "unit": "liters" },
+            "name": "AJ133 Engine Oil Volume"
+          }
+        ]
+      },
+      {
+        "hdr": "7E1",
+        "rax": "7E9",
+        "cmd": { "22": "1E69" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_GEARBOX_OIL_TEMP",
+            "path": "Transmission",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
+            "name": "AJ133 Gearbox Temp"
+          }
+        ]
+      },
+      {
+        "hdr": "795",
+        "cmd": { "22": "1E8A" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_REAR_DIFF_TEMP",
+            "path": "Driveline",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 150, "unit": "celsius" },
+            "name": "AJ133 Locking Diff Oil Temp"
+          }
+        ]
+      },
+      {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": { "22": "03E6" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_MEASURED_OIL_LEVEL",
+            "path": "Engine",
+            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "millimeters" },
+            "name": "AJ133 Oil Level"
+          }
+        ]
+      },
+      {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": { "22": "033E" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_AJ133_BOOST_KPA",
+            "path": "Engine",
+            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "kilopascals" },
+            "name": "AJ133 Boost (candidate)"
+          },
+          {
+            "id": "LR4_ECU_033E_UPTIME_S",
+            "path": "Diagnostics",
+            "fmt": { "len": 16, "max": 65535, "unit": "seconds" },
+            "name": "ECU uptime (candidate)"
+          }
+        ]
+      },
+      {
+        "hdr": "7E0",
+        "rax": "7E8",
+        "cmd": { "22": "0520" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IAT2",
+            "path": "Engine",
+            "fmt": { "len": 8, "min": 0, "max": 999, "unit": "celsius" },
+            "name": "AJ133 IAT2"
+          }
+        ]
+      },
+      {
         "hdr": "7E2",
         "rax": "7EA",
         "cmd": { "22": "F173" },
@@ -209,22 +312,19 @@
             "id": "LR4_IC_ALT_F173_16_BE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F173 16-bit BE)",
-            "description": "Cluster candidate; signed meters, big-endian"
+            "name": "Altitude (F173 16-bit BE)"
           },
           {
             "id": "LR4_IC_ALT_F173_16_LE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
-            "name": "Altitude (F173 16-bit LE)",
-            "description": "Same DID, little-endian decode"
+            "name": "Altitude (F173 16-bit LE)"
           },
           {
             "id": "LR4_IC_ALT_F173_32_BE",
             "path": "Environment",
             "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F173 32-bit BE)",
-            "description": "If module returns 4-byte signed meters"
+            "name": "Altitude (F173 32-bit BE)"
           }
         ]
       },
@@ -238,15 +338,13 @@
             "id": "LR4_IC_ALT_F17C_16_BE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F17C 16-bit BE)",
-            "description": "Alternate cluster DID, signed meters"
+            "name": "Altitude (F17C 16-bit BE)"
           },
           {
             "id": "LR4_IC_ALT_F17C_32_BE",
             "path": "Environment",
             "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (F17C 32-bit BE)",
-            "description": "Alternate cluster DID, 4-byte signed"
+            "name": "Altitude (F17C 32-bit BE)"
           }
         ]
       },
@@ -260,15 +358,13 @@
             "id": "LR4_NAV_ALT_F173_16_BE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (NAV F173 16-bit BE)",
-            "description": "Infotainment/nav address; signed meters"
+            "name": "Altitude (NAV F173 16-bit BE)"
           },
           {
             "id": "LR4_NAV_ALT_F173_16_LE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
-            "name": "Altitude (NAV F173 16-bit LE)",
-            "description": "Little-endian variant"
+            "name": "Altitude (NAV F173 16-bit LE)"
           }
         ]
       },
@@ -282,8 +378,7 @@
             "id": "LR4_NAV_ALT_01A6_16_BE",
             "path": "Environment",
             "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
-            "name": "Altitude (NAV 01A6 16-bit BE)",
-            "description": "Legacy-style DID some JLR stacks alias; signed meters"
+            "name": "Altitude (NAV 01A6 16-bit BE)"
           }
         ]
       }
