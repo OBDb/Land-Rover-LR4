@@ -152,13 +152,13 @@
         "freq": 1,
         "signals": [
           {
-            "id": "LR4_ALT_FROM_BARO_M",
+            "id": "LR4_ALT_FROM_BARO_FT",
             "path": "Climate",
-            "fmt": { "len": 8, "min": -500, "max": 9000, "mul": -84, "add": 8511.3, "unit": "meters" },
-            "name": "Altitude (from BARO, m)"
+            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 27931, "unit": "feet" },
+            "name": "Altitude (ft)"
           }
         ]
-      },
+      }
       {
         "hdr": "7DF",
         "cmd": {"01": "42"},
