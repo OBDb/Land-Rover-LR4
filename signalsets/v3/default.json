@@ -198,6 +198,94 @@
             "suggestedMetric": "starterBatteryVoltage"
           }
         ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F173" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IC_ALT_F173_16_BE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (F173 16-bit BE)",
+            "description": "Cluster candidate; signed meters, big-endian"
+          },
+          {
+            "id": "LR4_IC_ALT_F173_16_LE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
+            "name": "Altitude (F173 16-bit LE)",
+            "description": "Same DID, little-endian decode"
+          },
+          {
+            "id": "LR4_IC_ALT_F173_32_BE",
+            "path": "Environment",
+            "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (F173 32-bit BE)",
+            "description": "If module returns 4-byte signed meters"
+          }
+        ]
+      },
+      {
+        "hdr": "7E2",
+        "rax": "7EA",
+        "cmd": { "22": "F17C" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_IC_ALT_F17C_16_BE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (F17C 16-bit BE)",
+            "description": "Alternate cluster DID, signed meters"
+          },
+          {
+            "id": "LR4_IC_ALT_F17C_32_BE",
+            "path": "Environment",
+            "fmt": { "len": 32, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (F17C 32-bit BE)",
+            "description": "Alternate cluster DID, 4-byte signed"
+          }
+        ]
+      },
+      {
+        "hdr": "7E5",
+        "rax": "7ED",
+        "cmd": { "22": "F173" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_NAV_ALT_F173_16_BE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (NAV F173 16-bit BE)",
+            "description": "Infotainment/nav address; signed meters"
+          },
+          {
+            "id": "LR4_NAV_ALT_F173_16_LE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "blsb": true, "unit": "meters" },
+            "name": "Altitude (NAV F173 16-bit LE)",
+            "description": "Little-endian variant"
+          }
+        ]
+      },
+      {
+        "hdr": "7E5",
+        "rax": "7ED",
+        "cmd": { "22": "01A6" },
+        "freq": 0.5,
+        "signals": [
+          {
+            "id": "LR4_NAV_ALT_01A6_16_BE",
+            "path": "Environment",
+            "fmt": { "len": 16, "max": 9000, "min": -500, "sign": true, "unit": "meters" },
+            "name": "Altitude (NAV 01A6 16-bit BE)",
+            "description": "Legacy-style DID some JLR stacks alias; signed meters"
+          }
+        ]
       }
     ]
   }
