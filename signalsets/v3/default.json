@@ -154,7 +154,7 @@
           {
             "id": "LR4_ALT_FROM_BARO_FT_RAW",
             "path": "Climate",
-            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 27931, "unit": "unitless" },
+            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 28531, "unit": "unitless" },
             "name": "Altitude (ft)"
           }
         ]
