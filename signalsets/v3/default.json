@@ -10,7 +10,7 @@
       { "hdr": "7DF", "cmd": {"01": "0C"}, "freq": 0.25,
         "signals": [
           { "id": "LR4_SAE_RPM", "path": "Engine",
-            "fmt": { "len": 16, "max": 8000, "mul": 0.25, "unit": "rpm" },
+            "fmt": { "len": 16, "max": 8000, "mul": 0.25, "unit": "revolutionsPerMinute" },
             "name": "Engine speed" }
         ]},
 
@@ -45,7 +45,7 @@
       { "hdr": "7DF", "cmd": {"01": "0B"}, "freq": 1,
         "signals": [
           { "id": "LR4_SAE_MAP", "path": "Engine",
-            "fmt": { "len": 8, "max": 255, "unit": "kilopascal" },
+            "fmt": { "len": 8, "max": 255, "unit": "kilopascals" },
             "name": "Intake manifold absolute pressure" }
         ]},
 
@@ -108,7 +108,7 @@
       { "hdr": "7DF", "cmd": {"01": "30"}, "freq": 0.25,
         "signals": [
           { "id": "LR4_SAE_WARMUPS", "path": "DTCs",
-            "fmt": { "len": 8, "max": 255, "unit": "scalar" },
+            "fmt": { "len": 8, "max": 255, "unit": "unitless" },
             "name": "Warm-ups since DTC clear" }
         ]},
 
@@ -143,7 +143,7 @@
       { "hdr": "7DF", "cmd": {"01": "33"}, "freq": 1,
         "signals": [
           { "id": "LR4_ALT_FROM_BARO_FT_RAW", "path": "Climate",
-            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 28531, "unit": "scalar" },
+            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 28531, "unit": "unitless" },
             "name": "Altitude (ft)" }
         ]},
 
@@ -152,41 +152,6 @@
           { "id": "LR4_SAE_VBAT", "path": "Battery",
             "fmt": { "len": 16, "max": 20, "mul": 0.001, "unit": "volts" },
             "name": "Control module voltage", "suggestedMetric": "starterBatteryVoltage" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "34"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LAMBDA_B1S1", "path": "Fuel",
-            "fmt": { "len": 16, "min": 0, "max": 2, "mul": 0.000030517578125, "unit": "normal" },
-            "name": "Equivalence ratio (B1S1)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "35"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LAMBDA_B1S2", "path": "Fuel",
-            "fmt": { "len": 16, "min": 0, "max": 2, "mul": 0.000030517578125, "unit": "normal" },
-            "name": "Equivalence ratio (B1S2)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "36"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LAMBDA_B2S1", "path": "Fuel",
-            "fmt": { "len": 16, "min": 0, "max": 2, "mul": 0.000030517578125, "unit": "normal" },
-            "name": "Equivalence ratio (B2S1)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "37"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LAMBDA_B2S2", "path": "Fuel",
-            "fmt": { "len": 16, "min": 0, "max": 2, "mul": 0.000030517578125, "unit": "normal" },
-            "name": "Equivalence ratio (B2S2)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"09": "02"}, "freq": 0.02,
-        "signals": [
-          { "id": "LR4_VIN", "path": "Info",
-            "fmt": { "len": 136, "unit": "ascii" },
-            "name": "VIN" }
         ]},
 
       { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03F3" }, "freq": 0.5,
@@ -227,7 +192,7 @@
       { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "033E" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_BOOST", "path": "Engine",
-            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "kilopascal" },
+            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "kilopascals" },
             "name": "Engine Boost" },
           { "id": "LR4_ECU_033E_UPTIME_S", "path": "Diagnostics",
             "fmt": { "len": 16, "max": 65535, "unit": "seconds" },
