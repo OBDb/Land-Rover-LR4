@@ -1,212 +1,39 @@
 {
     "commands": [
-      { "hdr": "7DF", "cmd": {"01": "0D"}, "freq": 0.25,
-        "signals": [
-          { "id": "LR4_SAE_SPEED", "path": "Movement",
-            "fmt": { "len": 8, "max": 300, "unit": "kilometersPerHour" },
-            "name": "Vehicle speed", "suggestedMetric": "speed" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "0C"}, "freq": 0.25,
-        "signals": [
-          { "id": "LR4_SAE_RPM", "path": "Engine",
-            "fmt": { "len": 16, "max": 8000, "mul": 0.25, "unit": "revolutionsPerMinute" },
-            "name": "Engine speed" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "05"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_ECT", "path": "Engine",
-            "fmt": { "len": 8, "min": -40, "max": 150, "add": -40, "unit": "celsius" },
-            "name": "Engine coolant temperature" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "0F"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_IAT", "path": "Engine",
-            "fmt": { "len": 8, "min": -40, "max": 120, "add": -40, "unit": "celsius" },
-            "name": "Intake air temperature" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "10"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_MAF", "path": "Engine",
-            "fmt": { "len": 16, "max": 655.35, "mul": 0.01, "unit": "gramsPerSecond" },
-            "name": "Mass air flow" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "11"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_TPS", "path": "Engine",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Throttle position" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "0B"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_MAP", "path": "Engine",
-            "fmt": { "len": 8, "max": 255, "unit": "kilopascals" },
-            "name": "Intake manifold absolute pressure" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "04"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LOAD_CALC", "path": "Engine",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Calculated engine load" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "0E"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_SPARK_ADV", "path": "Engine",
-            "fmt": { "len": 8, "min": -64, "max": 63.5, "mul": 0.5, "add": -64, "unit": "degrees" },
-            "name": "Timing advance" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "2E"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_EVAP_CMD", "path": "Fuel",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Commanded evaporative purge" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "2F"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_FUEL", "path": "Fuel",
-            "fmt": { "len": 8, "max": 100, "mul": 0.3921568627, "unit": "percent" },
-            "name": "Fuel level", "suggestedMetric": "fuelTankLevel" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "06"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_STFT_B1", "path": "Fuel",
-            "fmt": { "len": 8, "min": -100, "max": 99.22, "mul": 0.78125, "add": -100, "unit": "percent" },
-            "name": "Short term fuel trim (B1)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "07"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LTFT_B1", "path": "Fuel",
-            "fmt": { "len": 8, "min": -100, "max": 99.22, "mul": 0.78125, "add": -100, "unit": "percent" },
-            "name": "Long term fuel trim (B1)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "08"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_STFT_B2", "path": "Fuel",
-            "fmt": { "len": 8, "min": -100, "max": 99.22, "mul": 0.78125, "add": -100, "unit": "percent" },
-            "name": "Short term fuel trim (B2)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "09"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_LTFT_B2", "path": "Fuel",
-            "fmt": { "len": 8, "min": -100, "max": 99.22, "mul": 0.78125, "add": -100, "unit": "percent" },
-            "name": "Long term fuel trim (B2)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "30"}, "freq": 0.25,
-        "signals": [
-          { "id": "LR4_SAE_WARMUPS", "path": "DTCs",
-            "fmt": { "len": 8, "max": 255, "unit": "unitless" },
-            "name": "Warm-ups since DTC clear" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "31"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_DIST_SINCE_CLR", "path": "DTCs",
-            "fmt": { "len": 16, "max": 65535, "unit": "kilometers" },
-            "name": "Distance since DTC clear", "suggestedMetric": "distanceSinceDTCsCleared" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "21"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_DIST_WITH_MIL", "path": "DTCs",
-            "fmt": { "len": 16, "max": 65535, "unit": "kilometers" },
-            "name": "Distance with MIL on" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "1F"}, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_SAE_RUNTIME", "path": "Engine",
-            "fmt": { "len": 16, "max": 65535, "unit": "seconds" },
-            "name": "Run time since engine start" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "46"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_AAT", "path": "Climate",
-            "fmt": { "len": 8, "min": -60, "max": 80, "add": -40, "unit": "celsius" },
-            "name": "Ambient air temperature" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "33"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_ALT_FROM_BARO_FT_RAW", "path": "Climate",
-            "fmt": { "len": 8, "min": -1500, "max": 30000, "mul": -275.6, "add": 28531, "unit": "unitless" },
-            "name": "Altitude (ft)" }
-        ]},
-
-      { "hdr": "7DF", "cmd": {"01": "42"}, "freq": 1,
-        "signals": [
-          { "id": "LR4_SAE_VBAT", "path": "Battery",
-            "fmt": { "len": 16, "max": 20, "mul": 0.001, "unit": "volts" },
-            "name": "Control module voltage", "suggestedMetric": "starterBatteryVoltage" }
-        ]},
-
       { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03F3" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_ENGINE_OIL_TEMP", "path": "Engine",
             "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
-            "name": "Engine Oil Temp (AJ133)" }
+            "name": "Oil Temp" }
         ]},
 
       { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03F2" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_ENGINE_OIL_VOLUME_GAL", "path": "Engine",
             "fmt": { "len": 8, "mul": 0.0264172, "min": 0, "max": 6.74, "unit": "gallons" },
-            "name": "Engine Oil Volume" }
-        ]},
-
+            "name": "Oil Volume" }
+        ]
+      },
       { "hdr": "7E1", "rax": "7E9", "cmd": { "22": "1E69" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_GEARBOX_OIL_TEMP", "path": "Drivetrain",
             "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
-            "name": "Gearbox Temp (AJ133)" }
-        ]},
-
+            "name": "Gearbox Temp" }
+        ]
+      },
       { "hdr": "795", "cmd": { "22": "1E8A" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_REAR_DIFF_TEMP", "path": "Drivetrain",
             "fmt": { "len": 8, "add": -40, "min": -40, "max": 150, "unit": "celsius" },
             "name": "Locking Diff Oil Temp" }
-        ]},
-
+        ]
+      },
       { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03E6" }, "freq": 0.5,
         "signals": [
           { "id": "LR4_MEASURED_OIL_LEVEL", "path": "Engine",
             "fmt": { "len": 8, "min": 0, "max": 255, "unit": "millimeters" },
             "name": "Oil Level" }
-        ]},
-
-      { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "033E" }, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_BOOST", "path": "Engine",
-            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "kilopascals" },
-            "name": "Engine Boost" },
-          { "id": "LR4_ECU_033E_UPTIME_S", "path": "Diagnostics",
-            "fmt": { "len": 16, "max": 65535, "unit": "seconds" },
-            "name": "ECU uptime (033E)" }
-        ]},
-
-      { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "0520" }, "freq": 0.5,
-        "signals": [
-          { "id": "LR4_IAT2", "path": "Engine",
-            "fmt": { "len": 8, "min": 0, "max": 999, "unit": "celsius" },
-            "name": "IAT2" },
-          { "id": "LR4_IAT2_OFFSET", "path": "Engine",
-            "fmt": { "len": 8, "min": -40, "max": 150, "add": -40, "unit": "celsius" },
-            "name": "IAT2 (offset)" }
-        ]}
+        ]
+      }
     ]
   }
