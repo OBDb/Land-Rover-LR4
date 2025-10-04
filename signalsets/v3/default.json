@@ -1,4 +1,39 @@
-{ "commands": [
+{
+    "commands": [
+      { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03F3" }, "freq": 0.5,
+        "signals": [
+          { "id": "LR4_ENGINE_OIL_TEMP", "path": "Engine",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
+            "name": "Oil Temp" }
+        ]},
 
-]
-}
+      { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03F2" }, "freq": 0.5,
+        "signals": [
+          { "id": "LR4_ENGINE_OIL_VOLUME_GAL", "path": "Engine",
+            "fmt": { "len": 8, "mul": 0.0264172, "min": 0, "max": 6.74, "unit": "gallons" },
+            "name": "Oil Volume" }
+        ]
+      },
+      { "hdr": "7E1", "rax": "7E9", "cmd": { "22": "1E69" }, "freq": 0.5,
+        "signals": [
+          { "id": "LR4_GEARBOX_OIL_TEMP", "path": "Drivetrain",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 120, "unit": "celsius" },
+            "name": "Gearbox Temp" }
+        ]
+      },
+      { "hdr": "795", "cmd": { "22": "1E8A" }, "freq": 0.5,
+        "signals": [
+          { "id": "LR4_REAR_DIFF_TEMP", "path": "Drivetrain",
+            "fmt": { "len": 8, "add": -40, "min": -40, "max": 150, "unit": "celsius" },
+            "name": "Locking Diff Oil Temp" }
+        ]
+      },
+      { "hdr": "7E0", "rax": "7E8", "cmd": { "22": "03E6" }, "freq": 0.5,
+        "signals": [
+          { "id": "LR4_MEASURED_OIL_LEVEL", "path": "Engine",
+            "fmt": { "len": 8, "min": 0, "max": 255, "unit": "millimeters" },
+            "name": "Oil Level" }
+        ]
+      }
+    ]
+  }
