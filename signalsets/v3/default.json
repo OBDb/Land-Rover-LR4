@@ -1,4 +1,492 @@
 { "commands": [
-
+{ "hdr": "732", "cmd": {"22": "D928"}, "freq": 10,
+  "signals": [
+    {"id": "LR4_GEAR_SELECTOR", "path": "Transmission", "name": "Gear Selector", "fmt": {"len": 8, "map": {
+          "0": { "description": "Park",    "value": "Park" },
+          "1": { "description": "Reverse", "value": "Reverse" },
+          "2": { "description": "Neutral", "value": "Neutral" },
+          "3": { "description": "Drive",   "value": "Drive" },
+          "7": { "description": "Sport",   "value": "Sport" }
+        }}
+    }
+  ]},
+{ "hdr": "761", "rax": "769", "cmd": {"22": "197C"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_197C_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "197C Raw", "description": "Undecoded. Nine distinct values in fourteen samples, the most variable unmined DID on the truck."}
+  ]},
+{ "hdr": "761", "rax": "769", "cmd": {"22": "D11C"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_D11C_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "D11C Raw", "description": "Undecoded. Ranges 0x3A to 0x41, which would be a plausible temperature."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B01"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_RIDE_HEIGHT_STATE", "path": "Suspension", "name": "Ride Height State", "description": "Runs in parallel with the ride height mode PID and agrees with it. All three observed bits are measured against the front height sensor: 0x100 at a front reading around 110 (Normal), 0x400 around 85 with the truck at its highest (Off-Road), 0x800 at 133 with it at its lowest (Access). Remember the sensor is inverted. Bit 9 (0x200) sits between Normal and Off-Road and has never been seen in 142 samples; the held-Access mode, where the lower button is held and the truck stays down, is the obvious candidate and has never been captured.", "fmt": {"len": 32, "map": {
+          "256":  { "description": "Normal",   "value": "Normal" },
+          "1024": { "description": "Off-Road", "value": "Off-Road" },
+          "2048": { "description": "Access",   "value": "Access" }
+        }}
+    },
+    {"id": "LR4_RIDE_HEIGHT_STATE_RAW", "path": "Suspension", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "Ride Height State Raw", "description": "Untranslated twin of Ride Height State. A mapped signal renders nothing for a value it has not been taught, so an unmapped state would be invisible in the app and only recoverable from the scan logs. This costs no extra request and makes a new state show up as a number."}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "cmd": {"22": "DD01"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_DD01_RAW", "hidden": true, "path": "Drivetrain", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "DD01 Raw"}
+  ]},
+{ "hdr": "795", "cmd": {"22": "1E8A"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_REAR_DIFF_TEMP", "path": "Drivetrain", "fmt": { "len": 8, "max": 150, "min": -40, "add": -40, "unit": "celsius" }, "name": "Locking Diff Oil Temp"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "2B12"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_SUSPENSION_2B12", "path": "Suspension", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "millimeters" }, "name": "Suspension Height Offset"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B02"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_3B02_B0", "hidden": true, "path": "Suspension", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "3B02 Byte 1"},
+    {"id": "LR4_3B02_B1", "hidden": true, "path": "Suspension", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "scalar" }, "name": "3B02 Byte 2"},
+    {"id": "LR4_3B02_B2", "hidden": true, "path": "Suspension", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "scalar" }, "name": "3B02 Byte 3"},
+    {"id": "LR4_3B02_B3", "hidden": true, "path": "Suspension", "fmt": {"bix": 24, "len": 8, "max": 255, "unit": "scalar" }, "name": "3B02 Byte 4"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B03"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SUSPENSION_PRES_FR", "path": "Suspension", "fmt": {"bix": 8, "len": 8, "max": 51, "div": 5, "nullmin": 0, "unit": "psi" }, "name": "Suspension Pressure Front Right"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B04"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SUSPENSION_PRES_FL", "path": "Suspension", "fmt": {"bix": 8, "len": 8, "max": 51, "div": 5, "nullmin": 0, "unit": "psi" }, "name": "Suspension Pressure Front Left"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B05"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SUSPENSION_PRES_RR", "path": "Suspension", "fmt": {"bix": 8, "len": 8, "max": 51, "div": 5, "nullmin": 0, "unit": "psi" }, "name": "Suspension Pressure Rear Right"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B06"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SUSPENSION_PRES_RL", "path": "Suspension", "fmt": {"bix": 8, "len": 8, "max": 51, "div": 5, "nullmin": 0, "unit": "psi" }, "name": "Suspension Pressure Rear Left"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B07"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SUSPENSION_COMPRESSOR", "path": "Suspension", "fmt": { "len": 16, "max": 65535, "nullmin": 0, "unit": "scalar" }, "name": "Compressor Activity"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B0B"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_3B0B_RAW", "hidden": true, "path": "Suspension", "fmt": { "len": 16, "max": 65535, "nullmin": 0, "unit": "scalar" }, "name": "3B0B Raw", "description": "Undecoded suspension DID, narrow range around 0x3D5."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B3C"}, "freq": 10,
+  "signals": [
+    {"id": "LR4_RIDE_HEIGHT", "path": "Suspension", "name": "Ride Height Mode", "description": "A bitfield, not an ordinal: bit 0 Normal, bit 1 Off-Road, bit 2 Access. 0x0D is 0x01|0x04|0x08 and has only been seen with the truck part-way between Normal and Access, so bit 3 reads as movement rather than a mode of its own. Bit 3 has never been seen set on its own, which is where a held-Access mode would most likely appear.", "fmt": {"len": 8, "map": {
+          "1":  { "description": "Normal",     "value": "Normal" },
+          "2":  { "description": "Off-Road",   "value": "Off-Road" },
+          "4":  { "description": "Access",     "value": "Access" },
+          "13": { "description": "In Transit", "value": "In Transit" }
+        }}
+    },
+    {"id": "LR4_RIDE_HEIGHT_RAW", "path": "Suspension", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Ride Height Mode Raw", "description": "Untranslated twin of Ride Height Mode, for the same reason as the state word: an unmapped value renders as a blank, and a blank teaches nothing."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B71"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_RIDE_HEIGHT_FRONT", "path": "Suspension", "fmt": { "len": 8, "max": 255, "nullmin": 0, "unit": "scalar" }, "name": "Height Sensor Front (inverted)", "description": "Inverted: a falling value means the truck is rising."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B72"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_RIDE_HEIGHT_REAR", "path": "Suspension", "fmt": { "len": 8, "max": 255, "nullmin": 0, "unit": "scalar" }, "name": "Height Sensor Rear (inverted)", "description": "Inverted: a falling value means the truck is rising."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "D11A"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_D11A_RAW", "path": "Suspension", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "D11A Raw", "description": "Was called Suspension Module Voltage and scaled to volts. It is not battery voltage: across 221 paired samples its raw range spans 57 to 105, an 84% swing, while control module voltage moved only 12.51 to 14.75, an 18% swing, and the implied scale scatters by 9%. The old scaling also put it at 16.8 V, which no 12 V system reaches. Best correlation found so far is 0.58 against compressor activity, which is not enough to name it. Undecoded until something fits."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "033E"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_FUEL_RAIL_P", "path": "Fuel", "fmt": { "len": 16, "max": 30000, "unit": "kilopascal" }, "name": "Fuel Rail Pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "03E6"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_MEASURED_OIL_LEVEL", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "millimeters" }, "name": "Oil Level"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "03F2"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_ENGINE_OIL_VOLUME_GAL", "path": "Engine", "fmt": { "len": 8, "max": 6.74, "mul": 0.0264172, "unit": "gallons" }, "name": "Oil Volume"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "03F3"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_ENGINE_OIL_TEMP", "path": "Engine", "fmt": { "len": 8, "max": 120, "min": -40, "add": -40, "unit": "celsius" }, "name": "Oil Temp", "suggestedMetric": "engineOilTemperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "0520"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_CHARGE_AIR_TEMP", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Charge Air Temp"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "DD01"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_ODOMETER", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "nullmin": 0, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "726", "rax": "72E", "cmd": {"22": "0202"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_726_0202_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "726 0202 Raw", "description": "The only non-identification DID ever found on module 726, from a sweep of 0000-03FF. Has only ever returned 00."}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "cmd": {"22": "1E6A"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_1E6A_RAW", "hidden": true, "path": "Drivetrain", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "1E6A Raw", "description": "Undecoded transmission DID, neighbour of the gearbox temperature."}
+  ]},
+{ "hdr": "795", "rax": "79D", "cmd": {"22": "1E88"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_1E88_RAW", "hidden": true, "path": "Drivetrain", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "1E88 Raw", "description": "Undecoded rear differential DID. Flat at 0000 on every sample so far; a lock cycle is the test."}
+  ]},
+{ "hdr": "795", "rax": "79D", "cmd": {"22": "1E89"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_1E89_RAW", "hidden": true, "path": "Drivetrain", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "1E89 Raw", "description": "Undecoded rear differential DID. Flat at 09C4 on every sample so far."}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A32"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A32_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "2A32 Raw", "description": "A counter, not a constant. Held 404720 across 19 samples taken over a single morning and was written off; nine hours and 111 km later it read 420200. 2A32 through 2A37 all advance. What they count is unknown - 2A32 gained 126 per km, 2A33 4.3, 2A34 8.6, 2A35 19.5, 2A36 0.8, 2A37 0.009 - and pinning it needs several samples within one drive, which is why these now poll at 120s."}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A33"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A33_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "2A33 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A34"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A34_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "2A34 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A35"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A35_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "2A35 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A36"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A36_RAW", "hidden": true, "path": "Tires", "fmt": { "len": 24, "max": 16777215, "nullmin": 0, "unit": "scalar" }, "name": "2A36 Distance Counter"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A37"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_2A37_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "2A37 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A38"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_2A38_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "2A38 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A39"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_2A39_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "2A39 Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A3A"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_2A3A_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "2A3A Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A3B"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_2A3B_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "2A3B Raw"}
+  ]},
+{ "hdr": "792", "rax": "79A", "cmd": {"22": "2A3C"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_2A3C_RAW", "hidden": true, "path": "ECU", "fmt": { "len": 24, "max": 16777215, "unit": "scalar" }, "name": "2A3C Raw"}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B00"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_3B00_RAW", "hidden": true, "path": "Suspension", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "3B00 Raw", "description": "Undecoded. Reads 0x03 in 111 of 113 samples; the exception is 0x103, once, with the truck sitting at Access. Bit 8 looks like a height-event flag, and 3B02 carries a bit-8 flag that behaves the same way."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B08"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_3B08_RAW", "hidden": true, "path": "Suspension", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "3B08 Raw", "description": "Undecoded. Reads 0x00 in 130 of 131 samples; the exception is 0x01, once, with Off-Road engaged and the truck at its highest. One sample is not a decode, but it is not dead either."}
+  ]},
+{ "hdr": "7D3", "rax": "7DB", "cmd": {"22": "3B4D"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_3B4D_RAW", "hidden": true, "path": "Suspension", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "3B4D Raw", "description": "Terrain Response candidate, and back in contention. It held a constant 0x00 across 236 samples and was written off as dead; the first short drive on which the off-road features were deliberately exercised produced 0x04, 0x01 and 0x00 within eight minutes. It does not track the ride height mode PID, so it is reporting something else. Needs one sample per selectable terrain mode to map."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F458"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_SEC_O2_TRIM_B2", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Long Term Secondary O2 Trim B2", "description": "SAE J1979 PID 58, the bank 2 counterpart to PID 56. Previously carried as an undecoded raw byte and briefly deleted on the mistaken reading that its single logged reply was a negative response; 62F458 7F is a positive reply meaning -0.78%."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F423"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_FUEL_RAIL_GAUGE_P", "path": "Fuel", "fmt": { "len": 16, "max": 655350, "mul": 10, "unit": "kilopascal" }, "name": "Fuel Rail Gauge Pressure", "description": "SAE J1979 PID 23, ranging 29 to 197 bar, the right shape for this engine's direct injection rail. It is not the same measurement as the proprietary DID 033E: across 157 paired samples the ratio between them drifts from 0.41 to 0.56 rather than holding constant, and in one stretch this PID sat pinned near 197 bar while 033E climbed from 79 to 110 bar. A fixed scaling error would give a fixed ratio, so these are two different quantities - plausibly a commanded rail target against a measured one. Worth sampling hard under load to separate them."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F401"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_MONITOR_STATUS", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "Monitor Status Raw", "description": "SAE J1979 PID 01: MIL state, stored DTC count and readiness monitors. Listed as supported by the ECM's own bitmask but never once requested. Top byte is the DTC count with the MIL bit; a non-zero value here is the cheapest possible check for a stored fault."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F441"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_MONITOR_THIS_CYCLE", "hidden": true, "path": "ECU", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "Monitor Status This Cycle Raw", "description": "SAE J1979 PID 41, readiness monitors for the current drive cycle. Supported per the ECM bitmask, never requested. Changes across a drive as monitors complete, so unlike PID 01 it should not be static."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F413"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_O2_SENSORS_PRESENT", "hidden": true, "path": "ECU", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "O2 Sensors Present Raw", "description": "SAE J1979 PID 13, a bitmask of which oxygen sensor positions exist. Answered 0x77 on its one logged sample. Static, but it says exactly which O2 PIDs are worth probing."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F451"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_FUEL_TYPE", "hidden": true, "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel Type Raw", "description": "SAE J1979 PID 51. Supported per the ECM bitmask, never requested. Static, one sample settles it."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F41C"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_OBD_STANDARD", "hidden": true, "path": "ECU", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "OBD Standard Raw", "description": "SAE J1979 PID 1C, which OBD standard this ECM claims. Supported per the bitmask, never requested. Static."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F403"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_FUEL_SYS_B1", "path": "Fuel", "fmt": { "len": 8, "max": 255, "map": { "1": { "description": "Open loop, engine cold", "value": "OpenLoopCold" }, "2": { "description": "Closed loop", "value": "ClosedLoop" }, "4": { "description": "Open loop, load or decel fuel cut", "value": "OpenLoopLoad" }, "8": { "description": "Open loop, system fault", "value": "OpenLoopFault" }, "16": { "description": "Closed loop with a feedback fault", "value": "ClosedLoopFault" } } }, "name": "Fuel System Status B1"},
+    {"id": "LR4_FUEL_SYS_B2", "path": "Fuel", "fmt": { "bix": 8, "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel System Status B2", "description": "Bank 2 fuel system status. Has mirrored bank 1 on every sample so far."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F438"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_O2_LAMBDA_B2", "path": "Engine", "fmt": { "len": 16, "max": 1.999, "div": 32768, "unit": "scalar" }, "name": "O2 Lambda B2S1", "description": "Bank 2 sensor 1. Rails at FFFF on roughly half of samples; treat those as invalid rather than lean."},
+    {"id": "LR4_O2_CURRENT_B2", "path": "Engine", "fmt": { "bix": 16, "len": 16, "max": 128, "min": -128, "div": 256, "add": -128, "unit": "milliamps" }, "name": "O2 Pump Current B2S1", "description": "Bank 2 counterpart. See O2 Pump Current B1S1 - PID 38 reports current, not voltage."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F42E"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_EVAP_PURGE", "path": "Fuel", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Commanded Evap Purge"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F415"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_O2_S2_VOLTAGE", "path": "Engine", "fmt": { "len": 8, "max": 1.275, "div": 200, "unit": "volts" }, "name": "O2 Voltage B1S2"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F456"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_SEC_O2_TRIM_B1", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Long Term Secondary O2 Trim B1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F445"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_THROTTLE_REL", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Relative Throttle Position"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F447"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_THROTTLE_B", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Absolute Throttle Position B"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F466"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_MAF_A", "path": "Engine", "fmt": { "bix": 8, "len": 16, "max": 2047.96, "div": 32, "unit": "gramsPerSecond" }, "name": "Mass Air Flow A", "description": "One of two intake tract sensors. Across 1,474 samples A and B sum to 0.88 of the single MAF PID by least squares, but the scatter between individual pairs is large enough that the split between the two is not trustworthy at this polling rate. Use the single MAF PID for anything quantitative."},
+    {"id": "LR4_MAF_B", "path": "Engine", "fmt": { "bix": 24, "len": 16, "max": 2047.96, "div": 32, "unit": "gramsPerSecond" }, "name": "Mass Air Flow B", "description": "One of two intake tract sensors. See Mass Air Flow A."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F467"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_CAC_COOLANT_TEMP", "path": "Engine", "fmt": { "bix": 16, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Charge Cooler Coolant Temp", "description": "The AJ126 runs a separate low-temperature circuit for the supercharger intercooler. Over 135 paired samples this sat 11.7 C above ambient and 24 C below charge air temperature, which is where that circuit belongs. Sensor 1 of the same PID was dropped: it matched the engine coolant PID to 0.0 C."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F468"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_IAT_1", "path": "Engine", "fmt": { "bix": 8, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake Air Temp Sensor 1", "description": "Pre-supercharger inlet air, measured 9.2 C above ambient over 135 samples."},
+    {"id": "LR4_IAT_2", "path": "Engine", "fmt": { "bix": 16, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake Air Temp Sensor 2", "description": "Post-supercharger charge air. Tracks the proprietary charge air temperature DID to within 2.7 C on average, so it is close to redundant with it."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F470"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_BOOST_A", "path": "Engine", "fmt": { "bix": 24, "len": 16, "max": 2047.96875, "div": 32, "unit": "kilopascal" }, "name": "Manifold Pressure (Fine)", "description": "SAE J1979 PID 70 channel A. Over 525 samples it tracks the 1 kPa manifold pressure PID to within 1.3 kPa on average, so it is the same measurement at 1/32 kPa resolution, not a separate pre-throttle sensor. The other three channels the PID defines read a constant zero and have been removed."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F404"}, "freq": 5,
+  "signals": [
+    {"id": "LR4_LOAD_CALC", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Calculated Load", "suggestedMetric": "engineLoad"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F405"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_COOLANT_TEMP", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Coolant Temp", "suggestedMetric": "engineCoolantTemperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F406"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_SHRTFT1", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Short Term Fuel Trim B1", "suggestedMetric": "shortTermFuelTrim"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F407"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_LONGFT1", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Long Term Fuel Trim B1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F408"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SHRTFT2", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Short Term Fuel Trim B2"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F409"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_LONGFT2", "path": "Fuel", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Long Term Fuel Trim B2", "description": "Bank 2. There is no long-term fuel trim metric slot, so this does not surface as a connectable."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F40B"}, "freq": 5,
+  "signals": [
+    {"id": "LR4_MAP", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Manifold Pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F40C"}, "freq": 2,
+  "signals": [
+    {"id": "LR4_RPM", "path": "Engine", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Engine Speed", "suggestedMetric": "engineSpeed"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F40D"}, "freq": 2,
+  "signals": [
+    {"id": "LR4_SPEED", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Vehicle Speed", "suggestedMetric": "speed"},
+    {"id": "LR4_SPEED_MPH", "hidden": true, "path": "Movement", "fmt": { "len": 8, "max": 158.4, "mul": 0.621371, "unit": "milesPerHour" }, "name": "Vehicle Speed (mph operand)", "description": "Speed in mph as a synthetic operand. Divided by the gal/h fuel rate it gives lambda-corrected mpg, if the app lets a synthetic read another synthetic. That is untested; see Fuel Economy (lambda-corrected, test)."},
+    {"id": "LR4_MPG_NUMERATOR", "hidden": true, "path": "Movement", "fmt": { "len": 8, "max": 1824.6, "mul": 7.15535, "unit": "scalar" }, "name": "Fuel Economy Numerator", "description": "Speed in mph premultiplied by 14.7 x 745 / 3600 x 3.785, so that dividing it by mass air flow gives mpg at lambda 1. The synthetic ratio has room for only two operands, so commanded lambda is assumed stoichiometric. Closed-loop cruise is; enrichment and fuel cut are not."},
+    {"id": "LR4_GP100_DENOMINATOR", "hidden": true, "path": "Movement", "fmt": { "len": 8, "max": 18.25, "mul": 0.0715535, "unit": "scalar" }, "name": "Gallons per 100 Miles Denominator", "description": "Speed in mph times 14.7 x 745 / 3600 x 3.785 / 100, so that mass air flow divided by it gives US gallons per 100 miles at lambda 1."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F40E"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_SPARK_ADV", "path": "Engine", "fmt": { "len": 8, "max": 63.5, "min": -64, "div": 2, "add": -64, "unit": "degrees" }, "name": "Timing Advance"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F40F"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_IAT", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake Air Temp"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F410"}, "freq": 2,
+  "signals": [
+    {"id": "LR4_MAF", "path": "Engine", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "gramsPerSecond" }, "name": "Mass Air Flow", "suggestedMetric": "massAirFlow"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F411"}, "freq": 10,
+  "signals": [
+    {"id": "LR4_THROTTLE_POS", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Throttle Position", "suggestedMetric": "throttlePosition"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F41F"}, "freq": 120,
+  "signals": [
+    {"id": "LR4_RUN_TIME", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "seconds" }, "name": "Run Time Since Engine Start"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F421"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_MIL_DIST", "path": "Trips", "fmt": { "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Distance With MIL On"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F42F"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Fuel Level", "suggestedMetric": "fuelTankLevel"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F430"}, "freq": 600,
+  "signals": [
+    {"id": "LR4_WARMUPS", "path": "Trips", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Warm-ups Since Codes Cleared", "description": "Saturated. The PID is a single byte and has been pinned at 255 for as long as it has been logged, so it says only that codes were cleared more than 255 warm-up cycles ago."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F431"}, "freq": 300,
+  "signals": [
+    {"id": "LR4_DIST_SINCE_CLR", "path": "Trips", "fmt": { "len": 16, "max": 65535, "nullmin": 0, "unit": "kilometers" }, "name": "Distance Since Codes Cleared", "suggestedMetric": "distanceSinceDTCsCleared"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F433"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_BARO", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Barometric Pressure"},
+    {"id": "LR4_ALTITUDE", "path": "Movement", "name": "Altitude", "description": "Derived from barometric pressure by lookup, not from GPS. Accurate to a few hundred feet and wrong in unusual weather.", "fmt": {"len": 8, "map": {
+          "55":  { "description": "15,955 ft", "value": "15,955 ft" },
+          "56":  { "description": "15,511 ft", "value": "15,511 ft" },
+          "57":  { "description": "15,073 ft", "value": "15,073 ft" },
+          "58":  { "description": "14,641 ft", "value": "14,641 ft" },
+          "59":  { "description": "14,215 ft", "value": "14,215 ft" },
+          "60":  { "description": "13,795 ft", "value": "13,795 ft" },
+          "61":  { "description": "13,380 ft", "value": "13,380 ft" },
+          "62":  { "description": "12,971 ft", "value": "12,971 ft" },
+          "63":  { "description": "12,568 ft", "value": "12,568 ft" },
+          "64":  { "description": "12,169 ft", "value": "12,169 ft" },
+          "65":  { "description": "11,776 ft", "value": "11,776 ft" },
+          "66":  { "description": "11,387 ft", "value": "11,387 ft" },
+          "67":  { "description": "11,003 ft", "value": "11,003 ft" },
+          "68":  { "description": "10,624 ft", "value": "10,624 ft" },
+          "69":  { "description": "10,249 ft", "value": "10,249 ft" },
+          "70":  { "description": "9,878 ft",  "value": "9,878 ft" },
+          "71":  { "description": "9,512 ft",  "value": "9,512 ft" },
+          "72":  { "description": "9,150 ft",  "value": "9,150 ft" },
+          "73":  { "description": "8,792 ft",  "value": "8,792 ft" },
+          "74":  { "description": "8,438 ft",  "value": "8,438 ft" },
+          "75":  { "description": "8,088 ft",  "value": "8,088 ft" },
+          "76":  { "description": "7,742 ft",  "value": "7,742 ft" },
+          "77":  { "description": "7,399 ft",  "value": "7,399 ft" },
+          "78":  { "description": "7,060 ft",  "value": "7,060 ft" },
+          "79":  { "description": "6,724 ft",  "value": "6,724 ft" },
+          "80":  { "description": "6,392 ft",  "value": "6,392 ft" },
+          "81":  { "description": "6,063 ft",  "value": "6,063 ft" },
+          "82":  { "description": "5,737 ft",  "value": "5,737 ft" },
+          "83":  { "description": "5,415 ft",  "value": "5,415 ft" },
+          "84":  { "description": "5,095 ft",  "value": "5,095 ft" },
+          "85":  { "description": "4,779 ft",  "value": "4,779 ft" },
+          "86":  { "description": "4,466 ft",  "value": "4,466 ft" },
+          "87":  { "description": "4,156 ft",  "value": "4,156 ft" },
+          "88":  { "description": "3,848 ft",  "value": "3,848 ft" },
+          "89":  { "description": "3,544 ft",  "value": "3,544 ft" },
+          "90":  { "description": "3,242 ft",  "value": "3,242 ft" },
+          "91":  { "description": "2,943 ft",  "value": "2,943 ft" },
+          "92":  { "description": "2,646 ft",  "value": "2,646 ft" },
+          "93":  { "description": "2,352 ft",  "value": "2,352 ft" },
+          "94":  { "description": "2,061 ft",  "value": "2,061 ft" },
+          "95":  { "description": "1,772 ft",  "value": "1,772 ft" },
+          "96":  { "description": "1,486 ft",  "value": "1,486 ft" },
+          "97":  { "description": "1,202 ft",  "value": "1,202 ft" },
+          "98":  { "description": "920 ft",    "value": "920 ft" },
+          "99":  { "description": "641 ft",    "value": "641 ft" },
+          "100": { "description": "364 ft",    "value": "364 ft" },
+          "101": { "description": "sea level", "value": "sea level" },
+          "102": { "description": "sea level", "value": "sea level" },
+          "103": { "description": "sea level", "value": "sea level" },
+          "104": { "description": "sea level", "value": "sea level" },
+          "105": { "description": "sea level", "value": "sea level" }
+        }}
+    }
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F434"}, "freq": 15,
+  "signals": [
+    {"id": "LR4_O2_LAMBDA",  "path": "Engine", "fmt": {           "len": 16, "max": 2,     "div": 32768, "nullmin": 0, "unit": "scalar" }, "name": "O2 Lambda B1S1",    "suggestedMetric": "o2Lambda"},
+    {"id": "LR4_O2_CURRENT", "path": "Engine", "fmt": {"bix": 16, "len": 16, "max": 128, "min": -128, "div": 256, "add": -128, "unit": "milliamps"  }, "name": "O2 Pump Current B1S1", "description": "The second word of SAE J1979 PID 34 is sensor current, not voltage; the voltage variants are PIDs 24 to 2B, which this ECM does not support. Read as voltage it sat at a meaningless flat 4.0 across 28,432 samples. Read as current it spans -0.95 to +1.36 mA with a mean of +0.16, which is what a wideband pump cell should do."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F43C"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_CAT_TEMP_B1", "path": "Engine", "fmt": { "len": 16, "max": 6513.5, "min": -40, "div": 10, "add": -40, "unit": "celsius" }, "name": "Catalyst Temp B1S1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F43D"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_CAT_TEMP_B2", "path": "Engine", "fmt": { "len": 16, "max": 6513.5, "min": -40, "div": 10, "add": -40, "unit": "celsius" }, "name": "Catalyst Temp B2S1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F442"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_BAT_V", "path": "Battery", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Battery Voltage", "suggestedMetric": "starterBatteryVoltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F443"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_LOAD_ABS", "path": "Engine", "fmt": { "len": 16, "max": 25700, "mul": 100, "div": 255, "unit": "percent" }, "name": "Absolute Load", "suggestedMetric": "absoluteEngineLoad"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F444"}, "freq": 3,
+  "signals": [
+    {"id": "LR4_EQ_RATIO", "path": "Engine", "fmt": { "len": 16, "max": 2, "div": 32768, "unit": "scalar" }, "name": "Equivalence Ratio", "suggestedMetric": "commandedLambda"},
+    {"id": "LR4_FUEL_DIVISOR", "hidden": true, "path": "Engine", "fmt": { "len": 16, "max": 23.031, "div": 2845.54, "unit": "scalar" }, "name": "Fuel Rate Divisor (gal/h)", "description": "Commanded lambda premultiplied by 14.7 x 745 / 3600 x 3.785 so that mass air flow divided by this value is US gallons per hour. Exists only because synthetic signals support a plain ratio with no constant; it is the constant, folded into the divisor."},
+    {"id": "LR4_FUEL_DIVISOR_MIN", "hidden": true, "path": "Engine", "fmt": { "len": 16, "max": 1381.86, "div": 47.426, "unit": "scalar" }, "name": "Fuel Rate Divisor (gal/min)", "description": "The gal/h divisor with a further x60 folded in, so mass air flow divided by it is US gallons per minute."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F446"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_AMBIENT_TEMP", "path": "Climate", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Ambient Air Temp"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F449"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_PEDAL_D", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Accelerator Pedal D"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F44A"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_PEDAL_E", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Accelerator Pedal E"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "cmd": {"22": "F44C"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_THROTTLE_CMD", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Commanded Throttle"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "cmd": {"22": "1E68"}, "freq": 60,
+  "signals": [
+    {"id": "LR4_1E68_RAW", "hidden": true, "path": "Transmission", "fmt": { "len": 8, "max": 255, "nullmin": 0, "unit": "scalar" }, "name": "1E68 Raw (varies most)", "description": "Undecoded transmission DID, neighbour of the gearbox temperature."}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "cmd": {"22": "1E69"}, "freq": 30,
+  "signals": [
+    {"id": "LR4_GEARBOX_OIL_TEMP", "path": "Drivetrain", "fmt": { "len": 8, "max": 120, "min": -40, "add": -40, "unit": "celsius" }, "name": "Gearbox Temp", "suggestedMetric": "transmissionFluidTemperature"}
+  ]}
+],
+"synthetics": [
+  { "id": "LR4_FUEL_RATE", "path": "Fuel", "name": "Fuel Rate", "max": 32, "unit": "gallonsPerHour", "suggestedMetric": "fuelRate", "formula": {
+    "op": "ratio", "a": "LR4_MAF", "b": "LR4_FUEL_DIVISOR"
+  }},
+  { "id": "LR4_FUEL_RATE_GPM", "path": "Fuel", "name": "Fuel Rate (gal/min)", "max": 0.6, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_MAF", "b": "LR4_FUEL_DIVISOR_MIN"
+  }},
+  { "id": "LR4_MPG", "path": "Fuel", "name": "Fuel Economy (mpg)", "max": 200, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_MPG_NUMERATOR", "b": "LR4_MAF"
+  }},
+  { "id": "LR4_GAL_PER_100MI", "path": "Fuel", "name": "Fuel Use (gal/100 mi)", "max": 100, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_MAF", "b": "LR4_GP100_DENOMINATOR"
+  }},
+  { "id": "LR4_MPG_LAMBDA", "path": "Fuel", "name": "Fuel Economy (mpg, lambda-corrected, test)", "max": 200, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_SPEED_MPH", "b": "LR4_FUEL_RATE"
+  }},
+  { "id": "LR4_BANK_BALANCE", "path": "Engine", "name": "Bank Balance", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_CAT_TEMP_B1", "b": "LR4_CAT_TEMP_B2"
+  }},
+  { "id": "LR4_BOOST_RATIO", "path": "Engine", "name": "Boost Pressure Ratio", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_MAP", "b": "LR4_BARO"
+  }},
+  { "id": "LR4_LAMBDA_TRACKING", "path": "Engine", "name": "Lambda Tracking", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_O2_LAMBDA", "b": "LR4_EQ_RATIO"
+  }},
+  { "id": "LR4_PEDAL_AGREEMENT", "path": "Engine", "name": "Pedal Agreement", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_PEDAL_D", "b": "LR4_PEDAL_E"
+  }},
+  { "id": "LR4_SUSPENSION_BALANCE_F", "path": "Suspension", "name": "Suspension Balance Front", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_SUSPENSION_PRES_FL", "b": "LR4_SUSPENSION_PRES_FR"
+  }},
+  { "id": "LR4_SUSPENSION_BALANCE_R", "path": "Suspension", "name": "Suspension Balance Rear", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_SUSPENSION_PRES_RL", "b": "LR4_SUSPENSION_PRES_RR"
+  }},
+  { "id": "LR4_THROTTLE_TRACKING", "path": "Engine", "name": "Throttle Tracking", "max": 3, "unit": "scalar", "formula": {
+    "op": "ratio", "a": "LR4_THROTTLE_POS", "b": "LR4_THROTTLE_CMD"
+  }}
 ]
 }
