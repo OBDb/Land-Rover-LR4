@@ -1,0 +1,8 @@
+references:
+  - "https://en.wikipedia.org/wiki/Land_Rover_Discovery#Third_generation_(L319;_2004)"
+
+generations:
+  - name: "Discovery 4 (L319)"
+    start_year: 2010
+    end_year: 2016
+    description: "Sold in North America as the LR4 and elsewhere as the Discovery 4, a revision of the L319 Discovery 3 (LR3) with an integrated body-frame, air suspension and Terrain Response. North American cars used the 5.0-litre naturally aspirated V8 to 2013 and the 3.0-litre supercharged V6 from 2014; other markets also had 3.0-litre TDV6 and SDV6 diesels."

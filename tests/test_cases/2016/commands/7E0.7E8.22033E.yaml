@@ -1,0 +1,14 @@
+command_id: 7E0.7E8.22033E
+test_cases:
+- expected_values:
+    LR4_FUEL_RAIL_P: 3102
+  response: 7E80562033E0C1E
+- expected_values:
+    LR4_FUEL_RAIL_P: 6142
+  response: 7E80562033E17FE
+- expected_values:
+    LR4_FUEL_RAIL_P: 6144
+  response: 7E80562033E1800
+- expected_values:
+    LR4_FUEL_RAIL_P: 19989
+  response: 7E80562033E4E15
