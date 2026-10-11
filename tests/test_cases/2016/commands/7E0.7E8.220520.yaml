@@ -1,0 +1,8 @@
+command_id: 7E0.7E8.220520
+test_cases:
+- expected_values:
+    LR4_CHARGE_AIR_TEMP: 33
+  response: '7E80462052049'
+- expected_values:
+    LR4_CHARGE_AIR_TEMP: 88
+  response: '7E80462052080'
